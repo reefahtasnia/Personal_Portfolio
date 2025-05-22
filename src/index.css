@@ -1,0 +1,161 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --glow-color: #00FFFF;
+  }
+
+  .dark {
+    --background: 0, 0%, 4%;
+    --foreground: 0, 0%, 94%;
+    --card: 0, 0%, 6%;
+    --card-foreground: 0, 0%, 94%;
+    --popover: 0, 0%, 6%;
+    --popover-foreground: 0, 0%, 94%;
+    --primary: 0, 0%, 94%;
+    --primary-foreground: 0, 0%, 6%;
+    --secondary: 240, 3%, 10%;
+    --secondary-foreground: 0, 0%, 94%;
+    --muted: 240, 3%, 10%;
+    --muted-foreground: 240, 5%, 64%;
+    --accent: 240, 3%, 10%;
+    --accent-foreground: 0, 0%, 94%;
+    --destructive: 0, 63%, 31%;
+    --destructive-foreground: 0, 0%, 94%;
+    --border: 240, 3%, 15%;
+    --input: 240, 3%, 15%;
+    --ring: 212.7 26.8% 83.9%;
+    --glow-color: #D400FF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-sm bg-white/10 dark:bg-black/30 border border-white/20 dark:border-white/10 rounded-xl;
+  }
+  
+  .neon-border {
+    @apply border-2 relative;
+  }
+  
+  .neon-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-md -z-10 opacity-75 transition-all duration-300;
+  }
+  
+  .light .neon-border::before {
+    box-shadow: 0 0 10px #00FFFF;
+  }
+  
+  .dark .neon-border::before {
+    box-shadow: 0 0 10px #D400FF;
+  }
+  
+  .neon-text {
+    @apply transition-all duration-300;
+  }
+  
+  .light .neon-text {
+    text-shadow: 0 0 5px #00FFFF;
+  }
+  
+  .dark .neon-text {
+    text-shadow: 0 0 5px #D400FF;
+  }
+  
+  .glitch-text {
+    position: relative;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .light .glitch-text::before {
+    left: -2px;
+    text-shadow: 2px 0 #00FFFF;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch 3s linear infinite alternate-reverse;
+  }
+  
+  .light .glitch-text::after {
+    left: 2px;
+    text-shadow: -2px 0 #D400FF;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch 2.5s linear infinite alternate-reverse;
+  }
+  
+  .dark .glitch-text::before {
+    left: -2px;
+    text-shadow: 2px 0 #D400FF;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch 3s linear infinite alternate-reverse;
+  }
+  
+  .dark .glitch-text::after {
+    left: 2px;
+    text-shadow: -2px 0 #00FFFF;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch 2.5s linear infinite alternate-reverse;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(30% 0 70% 0);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+  80% {
+    clip-path: inset(15% 0 80% 0);
+  }
+  100% {
+    clip-path: inset(50% 0 30% 0);
+  }
+}
