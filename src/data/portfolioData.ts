@@ -1,6 +1,5 @@
-
 // Role-specific content data
-export type Role = 'fullstack' | 'ctf' | 'uiux' | 'management';
+export type Role = "fullstack" | "ctf" | "uiux" | "management";
 
 export type SkillItem = {
   name: string;
@@ -18,7 +17,7 @@ export type ProjectItem = {
   features?: string[];
   techDetails?: string;
   collaboration?: string;
-  type?: 'Individual' | 'Team' | 'Client' | 'Open Source';
+  type?: "Individual" | "Team" | "Client" | "Open Source";
 };
 
 export type ExperienceItem = {
@@ -88,7 +87,7 @@ export const aboutData: Record<Role, AboutContent> = {
     additionalInfo: `My management philosophy centers on clear communication, empowering team members, and maintaining a balance
     between achieving business goals and supporting individual growth. I have particular experience in leading university clubs
     and organizing large-scale events that bring together diverse stakeholders.`,
-  }
+  },
 };
 
 export const skillsData: Record<Role, SkillItem[]> = {
@@ -147,209 +146,218 @@ export const skillsData: Record<Role, SkillItem[]> = {
 export const projectsData: Record<Role, ProjectItem[]> = {
   fullstack: [
     {
-      title: "E-Commerce Platform",
-      description: "A full-featured online store built with Next.js, Node.js, and MongoDB. This platform includes user authentication, product catalog, shopping cart functionality, payment integration, and an admin dashboard.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      tags: ["Next.js", "React", "Node.js", "MongoDB", "Stripe", "JWT Auth"],
+      title: "OncoConnect",
+      description:
+        "Centralized cancer care platform connecting patients and doctors through a secure hub, streamlining appointment scheduling, medical history tracking, and communication.",
+      image:
+        "https://images.unsplash.com/photo-1588933371592-fb0Q0CNlYyE?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80 ",
+      tags: ["React", "CSS", "MongoDB", "Supabase", "Google Gemini API"],
       link: "#",
-      github: "https://github.com/username/e-commerce-platform",
+      github: "https://github.com/reefahtasnia/OncoConnectV2.git ",
       type: "Team",
       features: [
-        "User authentication and profile management",
-        "Product catalog with advanced filtering",
-        "Shopping cart and checkout process",
-        "Payment processing with Stripe",
-        "Admin dashboard for inventory management",
-        "Order tracking and history"
+        "User authentication and role-based access",
+        "Appointment scheduling with doctor-patient messaging",
+        "Medical record storage and retrieval",
+        "Integration with Google Gemini API for health insights",
+        "Responsive design for mobile and desktop",
+        "Real-time data sync across user profiles",
       ],
-      techDetails: "Built with a microservices architecture using Next.js for the frontend and Node.js/Express for the backend API. MongoDB is used for data storage with Mongoose ODM. Authentication is handled using JWT tokens.",
-      collaboration: "Collaborative project with a team of 3 developers. I was responsible for the frontend architecture, payment integration, and deployment pipeline."
+      techDetails:
+        "Frontend built with React and CSS, backend using Supabase as BaaS, MongoDB for flexible document-based storage, and Gemini API for intelligent patient assistance.",
+      collaboration:
+        "Collaborated with two highly talented developers during academic coursework at MIST.",
     },
     {
-      title: "Task Management System",
-      description: "A collaborative project management tool with real-time updates, designed to help teams track tasks, deadlines, and project milestones. Features include drag-and-drop task organization, file attachments, comments, and notifications.",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-      tags: ["React", "Firebase", "Material UI", "Redux", "Real-time Database"],
+      title: "Maternity Maven",
+      description:
+        "Health management application tailored for expecting mothers, offering real-time tracking, doctor communication, and robust data security using Oracle Database integration.",
+      image: "https://images.unsplash.com/photo-1594006050017-dc7c8f6c817d ",
+      tags: ["React", "Node.js", "Express.js", "Oracle", "CSS"],
       link: "#",
-      github: "https://github.com/username/task-manager",
+      github: "https://github.com/reefahtasnia/MaternityMaven ",
+      type: "Team",
+      features: [
+        "User profile creation for mothers, doctors, and admins",
+        "Medical history and appointment management",
+        "Nutrition, fetal movement, and medication trackers",
+        "Integrated e-commerce shop for maternal products",
+        "Feedback and complaint submission system",
+        "Secure data handling with Oracle DB",
+      ],
+      techDetails:
+        "Frontend: ReactJS with CSS; Backend: Node.js + Express.js RESTful API; Database: Oracle for secure and structured data storage.",
+      collaboration:
+        "Collaborated with three talented classmates for this academic project completed at MIST.",
+    },
+    {
+      title: "Focus Forge",
+      description:
+        "Personalized productivity tool designed to minimize distractions with task lists, timers, and a music player, featuring a clean UI/UX for enhanced focus.",
+      image: "https://images.unsplash.com/photo-1503264116251-35a269479413 ",
+      tags: ["HTML", "CSS", "PHP", "MySQL", "XAMPP"],
+      link: "#",
+      github: "https://github.com/Reefah84/focusforge_backend ",
       type: "Individual",
       features: [
-        "Drag-and-drop kanban board interface",
-        "Real-time updates across all connected clients",
-        "Task assignment and deadline tracking",
-        "File attachments and rich text comments",
-        "Email notifications for task updates",
-        "Project analytics and reporting"
+        "Task list creation and prioritization",
+        "Pomodoro-style timer for time blocking",
+        "Embedded music player for concentration",
+        "User-friendly interface for seamless interaction",
+        "Data persistence using MySQL database",
+        "Local development using XAMPP stack",
       ],
-      techDetails: "Built with React and Firebase for real-time data synchronization. Uses Redux for state management and Material UI components. Firebase Authentication handles user management while Cloud Functions manage notifications.",
-      collaboration: "Individual project developed as part of a web development bootcamp. Later extended with additional features based on user feedback."
+      techDetails:
+        "Built using HTML, CSS, PHP for frontend and backend logic, with MySQL as the database and XAMPP for local server deployment.",
+      collaboration:
+        "Solo project developed as part of personal learning and academic coursework.",
     },
     {
-      title: "Financial Dashboard",
-      description: "Interactive data visualization dashboard for financial analytics, enabling users to monitor stocks, analyze market trends, and manage personal investments. The dashboard presents complex financial data in an accessible, visually appealing format.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-      tags: ["React", "D3.js", "Express", "PostgreSQL", "ChartJS", "REST API"],
+      title: "PCOS Journey",
+      description:
+        "Java-based desktop application connecting patients with specialists through symptom tracking, quizzes, and treatment reminders to manage PCOS effectively.",
+      image: "https://images.unsplash.com/photo-1586773860400-263f7c4daca8 ",
+      tags: ["Java", "JavaFX", "OOP", "Desktop App", "UI/UX"],
       link: "#",
-      github: "https://github.com/username/financial-dashboard",
+      github: "https://github.com/Reefah84/PCOSJourney.git ",
       type: "Team",
       features: [
-        "Real-time stock ticker and price charts",
-        "Portfolio performance visualization",
-        "Market trend analysis with customizable indicators",
-        "Personalized watchlists and alerts",
-        "News feed integration with sentiment analysis",
-        "Responsive design for mobile and desktop"
+        "Symptom tracking and quiz-based assessment",
+        "Treatment reminder notifications",
+        "Patient-doctor connection module",
+        "Simple and intuitive JavaFX UI",
+        "Modular OOP architecture",
+        "Offline functionality for accessibility",
       ],
-      techDetails: "Frontend built with React and D3.js for data visualization. Backend uses Express and PostgreSQL for data storage. Financial data is fetched from multiple external APIs and processed in real-time.",
-      collaboration: "Developed collaboratively with a team of 4 members. I led the frontend development and was responsible for the data visualization components and API integration."
+      techDetails:
+        "Developed using Java and JavaFX with object-oriented principles to ensure scalability and maintainability. Designed as a standalone desktop app for ease of use.",
+      collaboration:
+        "Collaborated with two talented classmates on this academic project focused on healthcare problem-solving using core programming concepts.",
     },
   ],
   ctf: [
     {
-      title: "Web Vulnerability Scanner",
-      description: "An automated tool for identifying common web security vulnerabilities such as XSS, SQL injection, CSRF, and insecure configurations. The scanner generates detailed reports with remediation recommendations and proof-of-concept exploit code.",
-      image: "https://images.unsplash.com/photo-1563206767-5b18f218e8de",
-      tags: ["Python", "Web Security", "Ethical Hacking", "Automation", "OWASP"],
-      github: "https://github.com/username/web-vulnerability-scanner",
-      type: "Individual",
-      features: [
-        "Automated scanning for OWASP Top 10 vulnerabilities",
-        "Custom payload generation for testing",
-        "Detailed reporting with severity ratings",
-        "Low false-positive rate with verification steps",
-        "Configurable scan depth and target selection",
-        "Support for authenticated scanning"
+      title: "Smart Company Management System",
+      description:
+        "A Cisco Packet Tracer simulation project integrating IoT sensors and networking technologies like firewalls, VPNs, VoIP, and smart sensors to enhance corporate security, communication, and operational efficiency.",
+      image: "https://images.unsplash.com/photo-1581093588401-04f23be70276 ",
+      tags: [
+        "Cisco Networking",
+        "IoT",
+        "Packet Tracer",
+        "Firewall",
+        "VPN",
+        "VoIP",
       ],
-      techDetails: "Developed in Python using custom web crawling and analysis modules. Integrates with popular security tools and maintains a database of known vulnerability patterns.",
-      collaboration: "Individual project developed for educational purposes and to assist in responsible security auditing."
-    }
+      link: "#",
+      github:
+        "https://github.com/reefahtasnia/Smart-Company-Management-System.git ",
+      type: "Team",
+      features: [
+        "Network security using Cisco ASA firewall with ACLs and NAT",
+        "Secure remote access via IPsec VPN tunneling",
+        "Internal voice communication using VoIP infrastructure",
+        "IoT-based environmental monitoring (fire, water level)",
+        "RFID access control system for physical security",
+        "Solar power generation and energy usage tracking",
+      ],
+      techDetails:
+        "Simulated using Cisco Packet Tracer 8.2 with network devices configured for secure communication, disaster response automation, and power management systems.",
+      collaboration:
+        "Collaborative project with a team of 3 developers. I contributed to IoT sensor integration.",
+    },
   ],
   uiux: [
-    {
-      title: "Banking App Redesign",
-      description: "A complete redesign of a traditional banking application with a focus on simplicity, accessibility, and visual appeal. The project included user research, information architecture, wireframing, high-fidelity designs, and interactive prototyping.",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
-      tags: ["UI/UX", "Figma", "User Research", "Mobile Design", "Accessibility", "Prototyping"],
-      link: "#",
-      type: "Client",
-      features: [
-        "Streamlined user onboarding process",
-        "Simplified transaction history with visual categorization",
-        "Smart budget planning and spending analysis tools",
-        "Biometric authentication and enhanced security features",
-        "Personalized insights and financial wellness indicators",
-        "Accessible design compliant with WCAG guidelines"
-      ],
-      techDetails: "Created in Figma with comprehensive component libraries and design systems. Included responsive designs for mobile, tablet, and desktop experiences with adaptive layouts and interaction patterns.",
-      collaboration: "Client project completed with continuous stakeholder feedback and multiple rounds of user testing. Collaborated with developers to ensure feasibility of implementation."
-    }
+    
   ],
   management: [
-    {
-      title: "University Club Website",
-      description: "Designed and managed the website for our university club, improving member engagement by 40%. The site serves as a central hub for club activities, event registration, resource sharing, and community building among members.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-      tags: ["Project Management", "Team Coordination", "Content Strategy", "WordPress", "SEO"],
-      link: "#",
-      type: "Team",
-      features: [
-        "Event calendar with registration functionality",
-        "Member profiles and networking directory",
-        "Resource library for sharing materials",
-        "Blog with member contribution capabilities",
-        "Integration with social media platforms",
-        "Analytics dashboard for engagement tracking"
-      ],
-      techDetails: "Built on WordPress with custom themes and plugins. Implemented SEO best practices and mobile-responsive design. Set up automated content workflows and member management systems.",
-      collaboration: "Led a team of 5 volunteers including content creators, designers, and technical support. Established editorial guidelines and content creation processes."
-    },
-    {
-      title: "Social Media Campaign",
-      description: "Led a team to create and execute a social media campaign that increased event attendance by 35%. The campaign spanned multiple platforms and included content creation, influencer outreach, analytics tracking, and community engagement strategies.",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-      tags: ["Social Media", "Team Leadership", "Content Creation", "Digital Marketing", "Analytics"],
-      link: "#",
-      type: "Team",
-      features: [
-        "Cross-platform content strategy (Instagram, Twitter, LinkedIn)",
-        "Video series highlighting key speakers and topics",
-        "Interactive polls and audience engagement activities",
-        "Targeted ad campaigns with A/B testing",
-        "Influencer partnerships and guest posting",
-        "Comprehensive performance analytics"
-      ],
-      techDetails: "Used social media management tools like Hootsuite and Buffer for scheduling. Implemented tracking pixels and UTM parameters for conversion tracking. Created custom graphics and videos using Canva and Adobe Creative Suite.",
-      collaboration: "Managed a cross-functional team including graphic designers, content writers, and marketing specialists. Coordinated with event organizers to ensure message consistency."
-    }
-  ]
+
+  ],
 };
 
 export const experienceData: Record<Role, ExperienceItem[]> = {
   fullstack: [
-    
+
   ],
   ctf: [
     {
       title: "Cybersecurity Mentor",
       company: "MIST Cyber Security Club",
       duration: "2024 - Present",
-      description: "Mentoring junior CTF players, creating challenges, and organizing competition events.",
-      skills: ["Challenge Creation", "Reverse Engineering", "Networking", "Mentorship"],
+      description:
+        "Mentoring junior CTF players, creating challenges, and organizing competition events.",
+      skills: [
+        "Challenge Creation",
+        "Reverse Engineering",
+        "Networking",
+        "Mentorship",
+      ],
     },
-    
   ],
   uiux: [
     {
       title: "Freelance UI/UX Designer",
       company: "Fiverr",
       duration: "2024 - Present",
-      description: "Leading design initiatives for enterprise clients, focusing on creating cohesive user experiences across platforms.",
+      description:
+        "Leading design initiatives for enterprise clients, focusing on creating cohesive user experiences across platforms.",
       skills: ["Design Systems", "User Research", "Prototyping", "Figma"],
     },
   ],
   management: [
     {
-      title: "Team Lead",
-      company: "University Tech Club",
-      duration: "2023 - Present",
-      description: "Leading a team of 10 members in organizing tech events, workshops, and hackathons. Improved team efficiency and event attendance by 30%.",
-      skills: ["Team Leadership", "Event Management", "Delegation", "Communication"],
+      title: "Management Team Lead",
+      company: "MIST Mongol Barota - Mars Rover Society",
+      duration: "2023 - 2025",
+      description:
+        "Actively  managed people of multiple teams responsible for the development and documentation of the rover",
+      skills: [
+        "Team Leadership",
+        "Event Management",
+        "Delegation",
+        "Communication",
+      ],
     },
     {
-      title: "Project Coordinator",
-      company: "Student Association",
-      duration: "2022 - 2023",
-      description: "Coordinated inter-university projects and competitions, managing timelines, resources, and team communication.",
-      skills: ["Project Management", "Budgeting", "Cross-team Collaboration", "Problem Solving"],
-    }
-  ]
+      title: "Executive Member of Committe of Communication, Promotion and Design",
+      company: "MIST Computer Club",
+      duration: "2023 - Present",
+      description:
+        "Dynamic content writer at MIST Computer Club, crafting compelling and engaging narratives that captivate audience and drive impactful communication.",
+      skills: [ "Dynamic Communication", "Web Content Writing"],
+    },
+    {
+      title: "Assistant Financial Secretary",
+      company: "Adamjee Cantonment College Taekwondo Club",
+      duration: "2021 - 2022",
+      description:
+        "Assisted in managing the club's finances, including budgeting and expense tracking.",
+      skills: [
+        "Project Management",
+        "Budgeting",
+        "Cross-team Collaboration",
+      ],
+    },
+    
+  ],
 };
 
 export const certificatesData: Record<Role, CertificateItem[]> = {
   fullstack: [
     {
-      name: "Advanced React and Redux",
-      issuer: "Udemy",
-      date: "2023",
+      name: "Full Stack Web Development using PHP and MySQL",
+      issuer: "MIST Innovation Club",
+      date: "Jun 2024",
       link: "#",
-      description: "In-depth course on React and Redux, covering advanced patterns and best practices.",  
+      image: "/MIC_fullstack.jpg",
+      description:
+        "Completed a comprehensive course on full-stack web development, focusing on PHP and MySQL for backend development.",
     },
     {
-      name: "AWS Certified Developer",
-      issuer: "Amazon Web Services",
-      date: "2022",
-      link: "#",
-    },
-    {
-      name: "MongoDB Database Administrator",
-      issuer: "MongoDB University",
-      date: "2021",
-      link: "#",
-    },
-    {
-      name: "TypeScript Masterclass",
-      issuer: "Frontend Masters",
-      date: "2021",
+      name: "Participation in Workshop on AppCity by Grameenphone",
+      issuer: "Grameenphone Academy",
+      image: "/App_dev_gpacademy.jpg",
+      date: "2024",
       link: "#",
     },
   ],
@@ -379,8 +387,7 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
       link: "#",
     },
   ],
-  uiux: [
-  ],
+  uiux: [],
   management: [
     {
       name: "Microsoft Office Specialist: Excel",
@@ -414,24 +421,28 @@ export const galleryImages: GalleryItem[] = [
     image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc",
     caption: "Receiving Award at Tech Hackathon",
     alt: "Award ceremony at tech competition",
-    story: "Won 1st place in a national hackathon with my team, showcasing our innovative project.",
+    story:
+      "Won 1st place in a national hackathon with my team, showcasing our innovative project.",
   },
   {
     image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b",
     caption: "Leading Team Workshop",
     alt: "Team workshop session",
-    story: "Conducted a hands-on workshop on full-stack development for junior developers in our university club.",
+    story:
+      "Conducted a hands-on workshop on full-stack development for junior developers in our university club.",
   },
   {
     image: "https://images.unsplash.com/photo-1532598065077-8b14c8f29165",
     caption: "CTF Competition Finals",
     alt: "Cybersecurity team at competition",
-    story: "Made it to the finals of the regional CTF competition, competing against top teams from universities across the country.",
+    story:
+      "Made it to the finals of the regional CTF competition, competing against top teams from universities across the country.",
   },
   {
     image: "https://images.unsplash.com/photo-1544531586-5f544a0b3b99",
     caption: "University Tech Conference",
     alt: "Speaking at university tech conference",
-    story: "Presented my research on modern web development practices at the annual university technology conference.",
+    story:
+      "Presented my research on modern web development practices at the annual university technology conference.",
   },
 ];
