@@ -35,6 +35,7 @@ export type CertificateItem = {
   image?: string;
   link?: string;
   description?: string;
+  credentialUrl?: string; // Optional field for credential URL
 };
 
 export type GalleryItem = {
@@ -49,44 +50,46 @@ export type AboutContent = {
   tagline: string;
   bio: string;
   additionalInfo: string;
+  image?: string; // User profile image
 };
 
-// About data for different roles
 export const aboutData: Record<Role, AboutContent> = {
   fullstack: {
     name: "Reefah Tasnia Haque",
-    tagline: "Full Stack Developer",
+    tagline: "Building robust, scalable web solutions.",
     bio: `Passionate about creating beautiful, functional digital experiences that solve real-world problems. 
-    With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`,
+With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`,
     additionalInfo: `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
-    My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
-    but also intuitive and enjoyable to use.`,
+My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
+but also intuitive and enjoyable to use.`,
+    image: "/Reefah_Tasnia.jpg", // Example image, user can change
   },
   ctf: {
     name: "Reefah Tasnia Haque",
-    tagline: "Cybersecurity Enthusiast & CTF Player",
-    bio: `Dedicated cybersecurity enthusiast with a passion for ethical hacking and security research. I regularly participate in
-    Capture The Flag competitions to sharpen my skills and stay updated with the latest security vulnerabilities and techniques.`,
-    additionalInfo: `My expertise includes penetration testing, reverse engineering, cryptography, and web application security.
-    I believe in responsible disclosure and using security knowledge to build more robust systems rather than exploiting vulnerabilities.`,
+    tagline: "Solving challenges, securing systems.",
+    bio: `Passionate about creating beautiful, functional digital experiences that solve real-world problems. 
+With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`,
+    additionalInfo: `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
+My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
+but also intuitive and enjoyable to use.`,
   },
   uiux: {
     name: "Reefah Tasnia Haque",
-    tagline: "UI/UX Designer & Front-End Developer",
-    bio: `Creative designer focused on crafting intuitive, beautiful user experiences that balance aesthetic appeal with functional design.
-    I approach each project with empathy for users and a keen eye for detail.`,
-    additionalInfo: `My design process involves extensive user research, wireframing, prototyping, and usability testing to ensure
-    that the final product not only looks good but truly meets user needs and business objectives. I'm proficient with design tools
-    like Figma and have the technical skills to bring those designs to life with code.`,
+    tagline: "Designing intuitive and delightful user experiences.",
+    bio: `Passionate about creating beautiful, functional digital experiences that solve real-world problems. 
+With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`,
+    additionalInfo: `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
+My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
+but also intuitive and enjoyable to use.`,
   },
   management: {
     name: "Reefah Tasnia Haque",
-    tagline: "Team Leader & Project Manager",
-    bio: `Experienced team leader with a track record of successfully managing technical projects and cross-functional teams.
-    I excel at strategic planning, resource allocation, and fostering collaborative environments where innovation thrives.`,
-    additionalInfo: `My management philosophy centers on clear communication, empowering team members, and maintaining a balance
-    between achieving business goals and supporting individual growth. I have particular experience in leading university clubs
-    and organizing large-scale events that bring together diverse stakeholders.`,
+    tagline: "Leading teams to success through collaboration.",
+    bio: `Passionate about creating beautiful, functional digital experiences that solve real-world problems. 
+With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`,
+    additionalInfo: `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
+My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
+but also intuitive and enjoyable to use.`,
   },
 };
 
@@ -149,8 +152,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
       title: "OncoConnect",
       description:
         "Centralized cancer care platform connecting patients and doctors through a secure hub, streamlining appointment scheduling, medical history tracking, and communication.",
-      image:
-        "https://images.unsplash.com/photo-1588933371592-fb0Q0CNlYyE?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80 ",
+      image:"/OncoConnect.png",
       tags: ["React", "CSS", "MongoDB", "Supabase", "Google Gemini API"],
       link: "#",
       github: "https://github.com/reefahtasnia/OncoConnectV2.git ",
@@ -172,7 +174,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
       title: "Maternity Maven",
       description:
         "Health management application tailored for expecting mothers, offering real-time tracking, doctor communication, and robust data security using Oracle Database integration.",
-      image: "https://images.unsplash.com/photo-1594006050017-dc7c8f6c817d ",
+      image: "/maternitymaven.png",
       tags: ["React", "Node.js", "Express.js", "Oracle", "CSS"],
       link: "#",
       github: "https://github.com/reefahtasnia/MaternityMaven ",
@@ -194,7 +196,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
       title: "Focus Forge",
       description:
         "Personalized productivity tool designed to minimize distractions with task lists, timers, and a music player, featuring a clean UI/UX for enhanced focus.",
-      image: "https://images.unsplash.com/photo-1503264116251-35a269479413 ",
+      image: "/focusforge.png",
       tags: ["HTML", "CSS", "PHP", "MySQL", "XAMPP"],
       link: "#",
       github: "https://github.com/Reefah84/focusforge_backend ",
@@ -213,10 +215,32 @@ export const projectsData: Record<Role, ProjectItem[]> = {
         "Solo project developed as part of personal learning and academic coursework.",
     },
     {
+      title: "PDF Genius",
+      description:
+        "An AI-powered PDF assistant that uses Large Language Models, ChromaDB, and a modern Next.js frontend to provide source-cited answers from uploaded documents.",
+      image: "/PDFGenius.png",
+      tags: ["Python", "Next.js", "ChromaDB", "LLM", "Flask", "Langchain", "Vector Database", "Tailwind CSS"],
+      github: "https://github.com/reefahtasnia/LLM_Project",
+      type: "Individual",
+      features: [
+        "Upload PDF files via modern web UI",
+        "Ask context-aware questions from PDF content",
+        "Get instant, source-cited answers using LLM",
+        "PDF embedding and vector storage in ChromaDB",
+        "Responsive chat UI built with Next.js and Tailwind",
+        "Flask backend to handle document processing and API requests",
+        "Automatic PDF parsing, splitting, and embedding pipeline"
+      ],
+      techDetails:
+        "Frontend: Built with Next.js and Tailwind CSS for a sleek, responsive UI. Backend: Flask handles LLM-based PDF question answering, with ChromaDB used for vector similarity search. Langchain used to orchestrate LLM workflows.",
+      collaboration:
+        "Individual project created to explore real-world LLM use cases for document-based AI assistants, with a focus on secure, local processing and retrieval-augmented generation.",
+    },    
+    {
       title: "PCOS Journey",
       description:
         "Java-based desktop application connecting patients with specialists through symptom tracking, quizzes, and treatment reminders to manage PCOS effectively.",
-      image: "https://images.unsplash.com/photo-1586773860400-263f7c4daca8 ",
+      image: "/pcosjourney.png",
       tags: ["Java", "JavaFX", "OOP", "Desktop App", "UI/UX"],
       link: "#",
       github: "https://github.com/Reefah84/PCOSJourney.git ",
@@ -277,20 +301,38 @@ export const projectsData: Record<Role, ProjectItem[]> = {
 
 export const experienceData: Record<Role, ExperienceItem[]> = {
   fullstack: [
-
+    {
+      title: "Industrial Trainee",
+      company: "NEXT Ventures - Internship",
+      duration: "May 2025 - May 2025",
+      description:
+        "Participated in a 15-day intensive industrial training program covering 7+ departments including Product Management, Design, Frontend, Backend, DevOps, SQA, Data Engineering and Payment Systems. Built a working LLM chatbot using vector databases and custom PDF input. Worked directly with engineers and mentors on real-world fintech systems and workflows.",
+      skills: [
+        "Product Management",
+        "Full Stack Development", 
+        "LLM Integration",
+        "Vector Databases",
+        "DevOps",
+        "Fintech Systems",
+        "Docker",
+        "Kubernetes",
+        "AWS"
+      ],
+    },
   ],
   ctf: [
     {
-      title: "Cybersecurity Mentor",
+      title: "Secretary and Mentor",
       company: "MIST Cyber Security Club",
       duration: "2024 - Present",
       description:
-        "Mentoring junior CTF players, creating challenges, and organizing competition events.",
+        "Serving as Secretary and mentoring junior CTF players, creating challenges, and organizing competition events.",
       skills: [
         "Challenge Creation",
         "Reverse Engineering",
         "Networking",
         "Mentorship",
+        "Leadership",
       ],
     },
   ],
@@ -354,64 +396,115 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
         "Completed a comprehensive course on full-stack web development, focusing on PHP and MySQL for backend development.",
     },
     {
-      name: "Participation in Workshop on AppCity by Grameenphone",
-      issuer: "Grameenphone Academy",
-      image: "/App_dev_gpacademy.jpg",
-      date: "2024",
-      link: "#",
+      name: "React (Basic)",
+      issuer: "HackerRank",
+      date: "Jul 2025",
+      image: "/HackerRank react_basic certificate Reefah Tasnia-1.png",
+      description: "HackerRank React (Basic) Certificate. Skills: React JS · React.js",
+      credentialUrl: "https://www.hackerrank.com/certificates/6e006d487a63"
+    },
+    {
+      name: "SQL (Basic)",
+      issuer: "HackerRank",
+      date: "Jul 2025",
+      image: "/HackerRank react_basic certificate Reefah Tasnia-1.png",
+      description: "HackerRank SQL (Basic) Certificate. Skills: SQL",
+      credentialUrl: "https://www.hackerrank.com/certificates/394820cc30e9"
+    },
+    {
+      name: "SQL (Intermediate)",
+      issuer: "HackerRank",
+      date: "Jul 2025",
+      image: "/HackerRank sql_intermediate certificate-1.png",
+      description: "HackerRank SQL (Intermediate) Certificate. Skills: SQL",
+      credentialUrl: "https://www.hackerrank.com/certificates/bf78d75621b6"
     },
   ],
   ctf: [
     {
-      name: "Offensive Security Certified Professional",
-      issuer: "Offensive Security",
-      date: "2022",
-      link: "#",
+      name: "Connect and Protect: Networks and Network Security",
+      issuer: "Google",
+      date: "Jul 2025",
+      image: "/connect and protect network and network security certificate-1.png",
+      description: "Google Cybersecurity Certificate. Skills: Cybersecurity",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/NIF6WI5T2TLB"
     },
     {
-      name: "Certified Ethical Hacker",
-      issuer: "EC-Council",
-      date: "2021",
-      link: "#",
+      name: "Foundations of Cybersecurity",
+      issuer: "Google Certification",
+      date: "Jun 2025",
+      image: "/foundations of cybersecurity certificate-1.png",
+      description: "Google Foundations of Cybersecurity. Skills: Cybersecurity · Security Management · Cyber Attacks · Data Ethics · Security Controls · Security Information and Event Management (SIEM) · Cyber Security Strategy · Network Analysis · Information Assurance · Cyber Risk · Cybersecurity Incident Response",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/9MIHMHGJVMK6"
     },
     {
-      name: "National CTF Championship - 2nd Place",
-      issuer: "National Cybersecurity Alliance",
-      date: "2020",
-      link: "#",
+      name: "Play It Safe: Manage Security Risks",
+      issuer: "Google",
+      date: "Jun 2025",
+      image: "/play it safe certificate-1.png",
+      description: "Google Play It Safe: Manage Security Risks. Skills: Security Information and Event Management (SIEM)",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/4UTRTSIF4JP5"
     },
     {
-      name: "Web Security Fundamentals",
-      issuer: "SANS Institute",
-      date: "2019",
-      link: "#",
+      name: "Flutter and Dart: Developing iOS, Android, and Mobile Apps",
+      issuer: "IBM",
+      date: "Jun 2025",
+      image: "/Flutter development certificate-1.png",
+      description: "IBM Flutter and Dart: Developing iOS, Android, and Mobile Apps. Skills: Flutter · Dart · Mobile Application Development · Android Studio",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/1YG24GPYYNIE"
+    },
+    {
+      name: "Hands on Ethical Hacking and Security Analysis Course",
+      issuer: "MIST Cyber Security Club & Cyber Bangla",
+      date: "2025",
+      image: "/mscs_bytebrigade.png",
+      description: "Learned different tools and techniques on ethical hacking.",
+    },
+    {
+      name: "Phoenix CTF 2025 participation",
+      issuer: "Red Team Village",
+      date: "2025",
+      image: "/Phoenix_ctf.jpg",
+      description: "Participated in Phoenix Summit CTF 2025. My team and I ranked 19th in the final scoreboard.",
+    },
+    {
+      name: "UAP Cyber Siege 2025 participation",
+      issuer: "University of Asia Pacific",
+      date: "2025",
+      image: "/UAP_ctf.jpg",
+      description: "Participated in UAP Cyber Siege 2025 and my team and I secured 18th position in the final scoreboard.",
+    },
+    {
+      name: "MIST Leetcon 2023 HackMeIfYouCan Participation",
+      issuer: "MIST Cyber Security Club",
+      date: "2025",
+      image: "/leetcon_ctf.jpg",
+      description: "First onsite CTF round with my team. Got inspired to continue competing.",
     },
   ],
-  uiux: [],
+  uiux: [
+    {
+      name: "Inception to Graphic Design",
+      issuer: "MIST Innovation Club",
+      date: "2022",
+      image: "/MIC_graphic.jpg",
+      description: "Learned basics of Adobe Photoshop and Adobe Illustrator and created a basic marketing poster.",
+    },
+  ],
   management: [
     {
-      name: "Microsoft Office Specialist: Excel",
-      issuer: "Microsoft",
+      name: "MIST Mongol Barota Team secured 2nd Position in Anatolian Rover Challenge 2024",
+      issuer: "Anatolian Rover Challenge",
+      date: "2024",
+      image: "/ARC_24.jpg",
+      description: "As the team lead of the Management sub-team, I coordinated with multidisciplinary teams and helped support the main team to go to Turkiye to compete.",
+    },
+    {
+      name: "MIST Mongol Barota Team secured 5th Position in Anatolian Rover Challenge 2023",
+      issuer: "Anatolian Rover Challenge",
       date: "2023",
-      link: "#",
-    },
-    {
-      name: "Social Media Management",
-      issuer: "Coursera",
-      date: "2022",
-      link: "#",
-    },
-    {
-      name: "Project Management Fundamentals",
-      issuer: "LinkedIn Learning",
-      date: "2022",
-      link: "#",
-    },
-    {
-      name: "Leadership and Team Management",
-      issuer: "edX",
-      date: "2021",
-      link: "#",
+      image: "/ARC_23.png",
+      description: "Worked as the team member of Management sub-team and learned all the necessary tasks and documentation from the team lead.",
     },
   ],
 };
@@ -432,7 +525,7 @@ export const galleryImages: GalleryItem[] = [
       "Conducted a hands-on workshop on full-stack development for junior developers in our university club.",
   },
   {
-    image: "https://images.unsplash.com/photo-1532598065077-8b14c8f29165",
+    image: "https://images.unsplash.com/photo-1532598065077-8b14c8f29165", //demo link
     caption: "CTF Competition Finals",
     alt: "Cybersecurity team at competition",
     story:
@@ -446,3 +539,10 @@ export const galleryImages: GalleryItem[] = [
       "Presented my research on modern web development practices at the annual university technology conference.",
   },
 ];
+
+export const aboutBio = `Passionate about creating beautiful, functional digital experiences that solve real-world problems. 
+With expertise in both frontend and backend technologies, I build comprehensive solutions that deliver value.`;
+
+export const aboutAdditionalInfo = `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
+My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
+but also intuitive and enjoyable to use.`;

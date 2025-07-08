@@ -5,40 +5,20 @@ import { certificatesData, type Role } from "@/data/portfolioData"
 import { cn } from "@/lib/utils"
 import { Award, ExternalLink, X } from "lucide-react"
 
-type CertificatesSectionProps = {
-  activeRole: Role
+// Combine all certificates from all roles
+const getAllCertificates = () => {
+  const allCertificates = []
+  Object.values(certificatesData).forEach(roleCertificates => {
+    allCertificates.push(...roleCertificates)
+  })
+  return allCertificates
 }
 
-export default function CertificatesSection({ activeRole }: CertificatesSectionProps) {
-  const [prevRole, setPrevRole] = useState<Role>(activeRole)
+export default function CertificatesSection() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [selectedCertificate, setSelectedCertificate] = useState<number | null>(null)
 
-  useEffect(() => {
-    if (prevRole !== activeRole) {
-      setIsAnimating(true)
-      const timer = setTimeout(() => {
-        setPrevRole(activeRole)
-        setIsAnimating(false)
-      }, 300)
-      return () => clearTimeout(timer)
-    }
-  }, [activeRole, prevRole])
-
-  const certificates = certificatesData[prevRole]
-
-  const getRoleName = (role: Role): string => {
-    switch (role) {
-      case "fullstack":
-        return "Full Stack Developer"
-      case "ctf":
-        return "CTF Player"
-      case "uiux":
-        return "UI/UX Designer"
-      case "management":
-        return "Management & Leadership"
-    }
-  }
+  const certificates = getAllCertificates()
 
   const openCertificate = (index: number) => {
     setSelectedCertificate(index)
@@ -54,7 +34,7 @@ export default function CertificatesSection({ activeRole }: CertificatesSectionP
         <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center neon-text">
           Certificates
         </h2>
-        <p className="text-center text-lg mb-12">My credentials as a {getRoleName(activeRole)}</p>
+        <p className="text-center text-lg mb-12">My professional certifications and achievements</p>
 
         <div
           className={cn(
@@ -72,13 +52,32 @@ export default function CertificatesSection({ activeRole }: CertificatesSectionP
                   className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-6 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
                   onClick={() => openCertificate(index)}
                 >
-                  <Award className="h-10 w-10 text-neon-blue dark:text-neon-purple mb-4" />
+                  {/* Show certificate image at the top of the card */}
+                  {cert.image && (
+                    <img
+                      src={cert.image.startsWith("/") ? cert.image : `/${cert.image}`}
+                      alt={cert.name}
+                      className="w-full h-40 object-contain rounded-lg mb-4 bg-gray-100 dark:bg-gray-900"
+                      onError={e => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/placeholder.svg?height=160&width=240";
+                        target.alt = "Certificate image could not be loaded";
+                      }}
+                    />
+                  )}
                   <h3 className="font-bold text-lg mb-2">{cert.name}</h3>
                   <div className="space-y-2">
                     <p className="text-sm text-gray-600 dark:text-gray-300">{cert.issuer}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{cert.date}</p>
                   </div>
-
+                  {/* Optional credential URL below info */}
+                  {cert.credentialUrl && (
+                    <div className="mt-2">
+                      <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                        <ExternalLink className="h-3 w-3 inline" /> Credential
+                      </a>
+                    </div>
+                  )}
                   <div className="mt-4">
                     <button className="text-sm neon-text hover:underline">
                       View Certificate
@@ -115,37 +114,27 @@ export default function CertificatesSection({ activeRole }: CertificatesSectionP
                 <div className="flex flex-col md:flex-row gap-6">
                   {certificates[selectedCertificate].image && (
                     <div className="flex-1">
-                      {/* Updated image path to ensure it loads correctly after refresh */}
                       <img
-                        src={
-                          certificates[selectedCertificate].image.startsWith("/")
-                            ? certificates[selectedCertificate].image
-                            : `/${certificates[selectedCertificate].image}`
-                        }
+                        src={certificates[selectedCertificate].image.startsWith("/") ? certificates[selectedCertificate].image : `/${certificates[selectedCertificate].image}`}
                         alt={certificates[selectedCertificate].name}
                         className="w-full h-auto rounded-lg shadow-md"
                         onError={(e) => {
-                          // Fallback if image fails to load
                           const target = e.target as HTMLImageElement
-                          console.error(`Failed to load image: ${target.src}`)
                           target.src = "/placeholder.svg?height=300&width=400"
                           target.alt = "Certificate image could not be loaded"
                         }}
                       />
                     </div>
                   )}
-
                   <div className={`flex-1 ${!certificates[selectedCertificate].image ? "w-full" : ""}`}>
                     <div className="mb-4">
                       <p className="text-sm font-semibold">Issued by</p>
                       <p>{certificates[selectedCertificate].issuer}</p>
                     </div>
-
                     <div className="mb-4">
                       <p className="text-sm font-semibold">Date</p>
                       <p>{certificates[selectedCertificate].date}</p>
                     </div>
-
                     {certificates[selectedCertificate].description && (
                       <div className="mb-4">
                         <p className="text-sm font-semibold">Description</p>
@@ -154,17 +143,11 @@ export default function CertificatesSection({ activeRole }: CertificatesSectionP
                         </p>
                       </div>
                     )}
-
-                    {certificates[selectedCertificate].link && (
-                      <div className="mt-6">
-                        <a
-                          href={certificates[selectedCertificate].link}
-                          className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-md w-fit"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                          View Original
+                    {/* Optional credential URL in modal */}
+                    {certificates[selectedCertificate].credentialUrl && (
+                      <div className="mb-4">
+                        <a href={certificates[selectedCertificate].credentialUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                          <ExternalLink className="h-3 w-3 inline" /> Credential
                         </a>
                       </div>
                     )}

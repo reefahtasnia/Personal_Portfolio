@@ -1,7 +1,5 @@
-
 import { useState, useEffect } from "react";
-import { Moon, Sun, Home } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,7 +14,6 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const [activeLink, setActiveLink] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,9 +81,7 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-3",
-        isScrolled
-          ? "bg-white/80 dark:bg-near-black/80 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+        isScrolled ? "bg-near-black/80 backdrop-blur-md shadow-md" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -134,32 +129,10 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "light" ? (
-              <Moon size={18} />
-            ) : (
-              <Sun size={18} />
-            )}
-          </button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center space-x-4">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "light" ? (
-              <Moon size={18} />
-            ) : (
-              <Sun size={18} />
-            )}
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-gray-600 dark:text-gray-300"

@@ -3,32 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --glow-color: #00FFFF;
-  }
-
-  .dark {
     --background: 0, 0%, 4%;
     --foreground: 0, 0%, 94%;
     --card: 0, 0%, 6%;
@@ -54,108 +39,138 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(240, 3%, 15%);
   }
-
   body {
-    @apply bg-background text-foreground;
+    background-color: #0A0A0A;
+    color: #FFFFFF;
   }
 }
 
 @layer components {
   .glass-panel {
-    @apply backdrop-blur-sm bg-white/10 dark:bg-black/30 border border-white/20 dark:border-white/10 rounded-xl;
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
   }
   
   .neon-border {
-    @apply border-2 relative;
+    border: 2px solid;
+    position: relative;
   }
   
   .neon-border::before {
     content: '';
-    @apply absolute inset-0 rounded-md -z-10 opacity-75 transition-all duration-300;
-  }
-  
-  .light .neon-border::before {
-    box-shadow: 0 0 10px #00FFFF;
-  }
-  
-  .dark .neon-border::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.375rem;
+    z-index: -10;
+    opacity: 0.75;
+    transition: all 0.3s;
     box-shadow: 0 0 10px #D400FF;
   }
   
   .neon-text {
-    @apply transition-all duration-300;
-  }
-  
-  .light .neon-text {
-    text-shadow: 0 0 5px #00FFFF;
-  }
-  
-  .dark .neon-text {
+    transition: all 0.3s;
     text-shadow: 0 0 5px #D400FF;
   }
-  
-  .glitch-text {
+
+  /* Parallax and scroll animations */
+  .parallax-section {
+    transition: transform 0.1s ease-out;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .stagger-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Project carousel animations */
+  .project-carousel {
     position: relative;
+    overflow: hidden;
   }
-  
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
+
+  .moving-gradient {
+    background: linear-gradient(45deg, #ff006e, #3a86ff, #06ffa5, #ffbe0b);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  .floating-orbs {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float-orb 6s ease-in-out infinite;
+    pointer-events: none;
   }
-  
-  .light .glitch-text::before {
-    left: -2px;
-    text-shadow: 2px 0 #00FFFF;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: glitch 3s linear infinite alternate-reverse;
+
+  .floating-orbs:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
   }
-  
-  .light .glitch-text::after {
-    left: 2px;
-    text-shadow: -2px 0 #D400FF;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: glitch 2.5s linear infinite alternate-reverse;
+
+  .floating-orbs:nth-child(2) {
+    top: 70%;
+    right: 10%;
+    animation-delay: 2s;
   }
-  
-  .dark .glitch-text::before {
-    left: -2px;
-    text-shadow: 2px 0 #D400FF;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: glitch 3s linear infinite alternate-reverse;
+
+  .floating-orbs:nth-child(3) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 4s;
   }
-  
-  .dark .glitch-text::after {
-    left: 2px;
-    text-shadow: -2px 0 #00FFFF;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: glitch 2.5s linear infinite alternate-reverse;
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes float-orb {
+    0%, 100% { 
+      transform: translateY(0px) scale(1); 
+      opacity: 0.3;
+    }
+    50% { 
+      transform: translateY(-20px) scale(1.1); 
+      opacity: 0.6;
+    }
   }
 }
 
-@keyframes glitch {
-  0% {
-    clip-path: inset(30% 0 70% 0);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  20% {
-    clip-path: inset(10% 0 60% 0);
-  }
-  40% {
-    clip-path: inset(40% 0 40% 0);
-  }
-  60% {
-    clip-path: inset(80% 0 5% 0);
-  }
-  80% {
-    clip-path: inset(15% 0 80% 0);
-  }
-  100% {
-    clip-path: inset(50% 0 30% 0);
+  50% {
+    transform: translateY(-10px);
   }
 }
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+

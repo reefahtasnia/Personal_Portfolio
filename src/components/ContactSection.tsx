@@ -6,7 +6,7 @@ import { Download } from "lucide-react"
 export default function ContactSection() {
   const handleDownloadResume = () => {
     const link = document.createElement("a")
-    link.href = "/resume.pdf" // Assuming resume.pdf is in the public folder
+    link.href = "/resume.pdf" 
     link.download = "Reefah_Tasnia_Haque_Resume.pdf"
     document.body.appendChild(link)
     link.click()

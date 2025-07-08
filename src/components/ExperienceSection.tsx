@@ -3,40 +3,40 @@ import { useState, useEffect } from "react";
 import { experienceData, type Role } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 import { Briefcase } from "lucide-react";
+import { useRef } from "react";
 
-type ExperienceSectionProps = {
-  activeRole: Role;
+// Combine all experiences from all roles
+const getAllExperiences = () => {
+  const allExperiences = [];
+  Object.values(experienceData).forEach(roleExperiences => {
+    allExperiences.push(...roleExperiences);
+  });
+  return allExperiences;
 };
 
-export default function ExperienceSection({ activeRole }: ExperienceSectionProps) {
-  const [prevRole, setPrevRole] = useState<Role>(activeRole);
+export default function ExperienceSection() {
   const [isAnimating, setIsAnimating] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visibleIndexes, setVisibleIndexes] = useState<number[]>([]);
 
   useEffect(() => {
-    if (prevRole !== activeRole) {
-      setIsAnimating(true);
-      const timer = setTimeout(() => {
-        setPrevRole(activeRole);
-        setIsAnimating(false);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [activeRole, prevRole]);
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const cards = Array.from(containerRef.current.querySelectorAll('.exp-card'));
+      const windowHeight = window.innerHeight;
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < windowHeight - 80) {
+          setVisibleIndexes((prev) => prev.includes(idx) ? prev : [...prev, idx]);
+        }
+      });
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const experiences = experienceData[prevRole];
-
-  const getRoleName = (role: Role): string => {
-    switch (role) {
-      case "fullstack":
-        return "Full Stack Developer";
-      case "ctf":
-        return "CTF Player";
-      case "uiux":
-        return "UI/UX Designer";
-      case "management":
-        return "Management & Leadership";
-    }
-  };
+  const experiences = getAllExperiences();
 
   return (
     <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -45,7 +45,7 @@ export default function ExperienceSection({ activeRole }: ExperienceSectionProps
           Experience
         </h2>
         <p className="text-center text-lg mb-12">
-          My professional journey as a {getRoleName(activeRole)}
+          My professional journey and career highlights
         </p>
 
         <div
@@ -53,6 +53,7 @@ export default function ExperienceSection({ activeRole }: ExperienceSectionProps
             "transition-all duration-300 max-w-4xl mx-auto",
             isAnimating ? "opacity-0 transform translate-y-8" : "opacity-100 transform translate-y-0"
           )}
+          ref={containerRef}
         >
           {(!experiences || experiences.length === 0) ? (
             <div className="text-center text-gray-500 dark:text-gray-400 py-12">
@@ -63,7 +64,13 @@ export default function ExperienceSection({ activeRole }: ExperienceSectionProps
               {experiences.map((exp, index) => (
                 <div
                   key={index}
-                  className="relative"
+                  className={cn(
+                    "relative exp-card transition-all duration-700",
+                    visibleIndexes.includes(index)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8",
+                  )}
+                  style={{ transitionDelay: visibleIndexes.includes(index) ? `${index * 120}ms` : "0ms" }}
                 >
                   <div className="absolute -left-[41px] p-2 rounded-full bg-white dark:bg-near-black border-2 border-neon-blue dark:border-neon-purple">
                     <Briefcase className="h-5 w-5 text-neon-blue dark:text-neon-purple" />
