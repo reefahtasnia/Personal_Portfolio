@@ -421,6 +421,39 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
     },
   ],
   ctf: [
+
+    {
+      name: "Sound the Alarm: Detection and Response",
+      issuer: "Google",
+      date: "August 2025",
+      image: "/Sound the alarm incident detection and response-1.png",
+      description: "Google Cybersecurity Certificate. Skills: Incident Response . Intrusion Detection and Prevention . Wireshark . TCP/IP",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/MTKK4HEKMVKM"
+    },
+    {
+      name: "Assets, Threats, and Vulnerabilities",
+      issuer: "Google",
+      date: "August 2025",
+      image: "/Assets, Threats, and Vulnerabilities certificate-1.png",
+      description: "Google Cybersecurity Certificate. Skills: Threat Detection . Threat Management . Cryptography",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/53A17TUQUM2V"
+    },
+    {
+      name: "Ethical Hacking Foundations",
+      issuer: "Packt",
+      date: "July 2025",
+      image: "/ethical hacking foundations by packt-1.png",
+      description: "Beginner Level course. Skills: Kali Linux · Command-Line Interface . Virtual Machines",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/TA66OBA2ZIA0"
+    },
+    {
+      name: "Tools of the Trade: Linux and SQL",
+      issuer: "Google",
+      date: "July 2025",
+      image: "/tools of trade certificate-1.png",
+      description: "Google Cybersecurity Certificate. Skills: Kali Linux · SQL . Bash Scripting",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/AKGZG2WYKJDJ"
+    },
     {
       name: "Connect and Protect: Networks and Network Security",
       issuer: "Google",
@@ -430,20 +463,20 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
       credentialUrl: "https://www.coursera.org/account/accomplishments/verify/NIF6WI5T2TLB"
     },
     {
-      name: "Foundations of Cybersecurity",
-      issuer: "Google Certification",
-      date: "Jun 2025",
-      image: "/foundations of cybersecurity certificate-1.png",
-      description: "Google Foundations of Cybersecurity. Skills: Cybersecurity · Security Management · Cyber Attacks · Data Ethics · Security Controls · Security Information and Event Management (SIEM) · Cyber Security Strategy · Network Analysis · Information Assurance · Cyber Risk · Cybersecurity Incident Response",
-      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/9MIHMHGJVMK6"
-    },
-    {
       name: "Play It Safe: Manage Security Risks",
       issuer: "Google",
       date: "Jun 2025",
       image: "/play it safe certificate-1.png",
       description: "Google Play It Safe: Manage Security Risks. Skills: Security Information and Event Management (SIEM)",
       credentialUrl: "https://www.coursera.org/account/accomplishments/verify/4UTRTSIF4JP5"
+    },
+    {
+      name: "Foundations of Cybersecurity",
+      issuer: "Google Certification",
+      date: "Jun 2025",
+      image: "/foundations of cybersecurity certificate-1.png",
+      description: "Google Foundations of Cybersecurity. Skills: Cybersecurity · Security Management · Cyber Attacks · Data Ethics · Security Controls · Security Information and Event Management (SIEM) · Cyber Security Strategy · Network Analysis · Information Assurance · Cyber Risk · Cybersecurity Incident Response",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/9MIHMHGJVMK6"
     },
     {
       name: "Flutter and Dart: Developing iOS, Android, and Mobile Apps",
@@ -456,28 +489,28 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
     {
       name: "Hands on Ethical Hacking and Security Analysis Course",
       issuer: "MIST Cyber Security Club & Cyber Bangla",
-      date: "2025",
+      date: "May 2025",
       image: "/mscs_bytebrigade.png",
       description: "Learned different tools and techniques on ethical hacking.",
     },
     {
       name: "Phoenix CTF 2025 participation",
       issuer: "Red Team Village",
-      date: "2025",
+      date: "May 2025",
       image: "/Phoenix_ctf.jpg",
       description: "Participated in Phoenix Summit CTF 2025. My team and I ranked 19th in the final scoreboard.",
     },
     {
       name: "UAP Cyber Siege 2025 participation",
       issuer: "University of Asia Pacific",
-      date: "2025",
+      date: "May 2025",
       image: "/UAP_ctf.jpg",
       description: "Participated in UAP Cyber Siege 2025 and my team and I secured 18th position in the final scoreboard.",
     },
     {
       name: "MIST Leetcon 2023 HackMeIfYouCan Participation",
       issuer: "MIST Cyber Security Club",
-      date: "2025",
+      date: "June 2023",
       image: "/leetcon_ctf.jpg",
       description: "First onsite CTF round with my team. Got inspired to continue competing.",
     },
@@ -511,32 +544,32 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
 
 export const galleryImages: GalleryItem[] = [
   {
-    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc",
-    caption: "Receiving Award at Tech Hackathon",
-    alt: "Award ceremony at tech competition",
+    image: "/gpacademy1.jpeg",
+    caption: "Celebrating Milestone at GP Academy as Freelance Factory Batch 1",
+    alt: "Event at GP House celebrating GP Academy milestone",
     story:
-      "Won 1st place in a national hackathon with my team, showcasing our innovative project.",
+      "Celebrated GP Academy crossing the $10,000 earning milestone through the Freelancing Factory program. Grateful for inspiring mentorship, supportive hosts, and the growth I’ve achieved in just five months of starting UI/UX design."
   },
   {
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b",
-    caption: "Leading Team Workshop",
-    alt: "Team workshop session",
+    image: "/uap.jpeg",
+    caption: "UAP Cyber Siege 2025 Finals",
+    alt: "Cybersecurity competition setup with team members",
     story:
-      "Conducted a hands-on workshop on full-stack development for junior developers in our university club.",
+      "Competed in the final round of UAP Cyber Siege 2025 with my team, securing 18th place on the leaderboard. It was a thrilling experience tackling complex cybersecurity challenges, learning teamwork, and gaining insights for my future journey."
   },
   {
-    image: "https://images.unsplash.com/photo-1532598065077-8b14c8f29165", //demo link
-    caption: "CTF Competition Finals",
-    alt: "Cybersecurity team at competition",
+    image: "/next.jpeg",
+    caption: "Industrial Training at NEXT Ventures",
+    alt: "Group training session at fintech company",
     story:
-      "Made it to the finals of the regional CTF competition, competing against top teams from universities across the country.",
+      "Completed 15 days of intensive industrial training at NEXT Ventures, working across product management, design, frontend, backend, data engineering, QA, DevOps, and payment integration. Our final project was an LLM chatbot. The experience boosted my confidence and exposed me to real-world workflows."
   },
   {
-    image: "https://images.unsplash.com/photo-1544531586-5f544a0b3b99",
-    caption: "University Tech Conference",
-    alt: "Speaking at university tech conference",
+    image: "/mcsc.jpeg",
+    caption: "First Cybersecurity Class taken at MIST Cyber Security Club",
+    alt: "Cybersecurity club session with students learning Kali Linux",
     story:
-      "Presented my research on modern web development practices at the annual university technology conference.",
+      "Conducted my first session for the Freshers’ Batch of MIST Cyber Security Club, introducing them to Kali Linux tools and Capture the Flag challenges. The energy and curiosity were amazing, and we wrapped up with a fun Kahoot quiz."
   },
 ];
 

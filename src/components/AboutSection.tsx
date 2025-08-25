@@ -45,8 +45,8 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-      {/* 3D Cube CSS */}
-      <style jsx>{`
+  {/* 3D Cube CSS (use regular <style> tag; 'jsx' attribute is Next.js-specific) */}
+  <style>{`
         .perspective-3d {
           perspective: 1200px;
         }
