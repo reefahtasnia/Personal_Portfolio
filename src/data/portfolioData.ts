@@ -149,12 +149,72 @@ export const skillsData: Record<Role, SkillItem[]> = {
 export const projectsData: Record<Role, ProjectItem[]> = {
   fullstack: [
     {
+      title: "Knowble: Your Smart Learning Companion",
+      description:
+        "Flutter-based EdTech app with AI-powered quizzes, personalized course guidance, real-time chat, and smart scheduling to make learning interactive and efficient.",
+      image: "/Knowble.png",
+      tags: [
+        "Flutter",
+        "Dart",
+        "Supabase",
+        "PostgreSQL",
+        "Google Gemini API",
+        "Mobile App",
+      ],
+      link: "#",
+      github: "https://github.com/reefahtasnia/Knowble",
+      type: "Team",
+      features: [
+        "AI-generated quizzes with instant feedback",
+        "Personalized course recommendations and smart search",
+        "Real-time chat for instructor-student support",
+        "Study scheduler with reminders and local notifications",
+        "Downloadable course materials (PDF, video) with offline access",
+        "Real-time data sync via Supabase and secure authentication",
+      ],
+      techDetails:
+        "Built with Flutter 3 for cross-platform delivery using Provider for state management. Supabase (PostgreSQL) powers auth, storage, and real-time sync; Node.js + Express support backend services and Gemini API integration for AI tutoring and content generation.",
+      collaboration:
+        "Developed with a four-person team: Sifat Bin Asad, Mehnaj Hridi, Progga Laboni Ray, and Reefah Tasnia Haque.",
+    },
+    {
+      title: "PodiumPerfect",
+      description:
+        "AI-powered debate and public speaking coach with speech analysis, team collaboration, and admin controls; submitted for Therap JavaFest 2025.",
+      image: "/PodiumPerfect.png",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "MongoDB",
+        "JWT",
+        "React",
+        "Vite",
+        "Tailwind",
+        "Google Cloud AI",
+      ],
+      link: "https://youtu.be/RzkaMyQz3cs?si=wSERu9ArLfX7vmTg",
+      github: "https://github.com/reefahtasnia/PodiumPerfect",
+      type: "Team",
+      features: [
+        "AI debate partners with personas and dynamic topics",
+        "Speech analysis with metrics and progress tracking",
+        "Socratic coaching mode for structured learning",
+        "Major features done personally: AI integration, speech analysis, frontend UI/UX",
+        "Admin dashboard for users, topics, and analytics",
+        "Secure JWT authentication with role-based access",
+      ],
+      techDetails:
+        "Backend: Spring Boot 3.5.4 (Java 17), MongoDB, Spring Security with JWT, Google Cloud AI for debate responses. Frontend: React 19 with Vite, Tailwind CSS + DaisyUI, React Router and Context API, Recharts for analytics.",
+      collaboration:
+        "Built with Reefah Tasnia and Samiha Akter as a competition submission for Therap JavaFest 2025.",
+    },
+    {
       title: "OncoConnect",
       description:
         "Centralized cancer care platform connecting patients and doctors through a secure hub, streamlining appointment scheduling, medical history tracking, and communication.",
-      image:"/OncoConnect.png",
+      image: "/OncoConnect.png",
       tags: ["React", "CSS", "MongoDB", "Supabase", "Google Gemini API"],
-      link: "#",
+      link: "https://youtu.be/dzlgqOCJZa4?si=8ksYEzerNWfidKkh",
       github: "https://github.com/reefahtasnia/OncoConnectV2.git ",
       type: "Team",
       features: [
@@ -176,7 +236,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
         "Health management application tailored for expecting mothers, offering real-time tracking, doctor communication, and robust data security using Oracle Database integration.",
       image: "/maternitymaven.png",
       tags: ["React", "Node.js", "Express.js", "Oracle", "CSS"],
-      link: "#",
+      link: "https://youtu.be/qca_ZSVZIko?si=pOvAULr5nGmekYQh",
       github: "https://github.com/reefahtasnia/MaternityMaven ",
       type: "Team",
       features: [
@@ -235,7 +295,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
         "Frontend: Built with Next.js and Tailwind CSS for a sleek, responsive UI. Backend: Flask handles LLM-based PDF question answering, with ChromaDB used for vector similarity search. Langchain used to orchestrate LLM workflows.",
       collaboration:
         "Individual project created to explore real-world LLM use cases for document-based AI assistants, with a focus on secure, local processing and retrieval-augmented generation.",
-    },    
+    },
     {
       title: "PCOS Journey",
       description:
@@ -264,7 +324,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
       title: "Smart Company Management System",
       description:
         "A Cisco Packet Tracer simulation project integrating IoT sensors and networking technologies like firewalls, VPNs, VoIP, and smart sensors to enhance corporate security, communication, and operational efficiency.",
-      image: "https://images.unsplash.com/photo-1581093588401-04f23be70276 ",
+      image: "/Smart_Company_Management.png",
       tags: [
         "Cisco Networking",
         "IoT",
@@ -290,9 +350,39 @@ export const projectsData: Record<Role, ProjectItem[]> = {
       collaboration:
         "Collaborative project with a team of 3 developers. I contributed to IoT sensor integration.",
     },
+    {
+      title: "Classroom Behavior Analyzer",
+      description:
+        "An IoT- and computer vision–based smart classroom monitoring system that automates student attendance, engagement analysis, noise monitoring, and security using ESP32-CAM, Arduino, and multi-sensor integration.",
+      image: "/Dashboard.png",
+      tags: [
+        "IoT",
+        "Computer Vision",
+        "ESP32-CAM",
+        "Arduino",
+        "RFID",
+        "Embedded Systems",
+        "React.js",
+      ],
+      link: "https://youtu.be/jozQhont1Jk?si=oe6AXbZc8YlrOHBQ",
+      github: "https://github.com/reefahtasnia/CI_Classroom_Behavior_Analyzer",
+      type: "Team",
+      features: [
+        "RFID-based automated attendance tracking with entry and exit monitoring",
+        "Computer vision–based head posture detection using SSIM algorithm",
+        "Real-time classroom noise level monitoring with threshold alerts",
+        "Ultrasonic motion detection for unauthorized backdoor exits",
+        "Servo-controlled access system for automated door operation",
+        "Live teacher dashboard with visual analytics and alerts",
+      ],
+      techDetails:
+        "Developed using ESP32-CAM for vision-based posture detection and Arduino Mega for sensor integration, including RFID, ultrasonic, sound sensors, servo motors, LCD displays, and buzzers. Image processing implemented using SSIM for engagement detection, with real-time data visualization on a web-based teacher dashboard.",
+      collaboration:
+        "Collaborative academic project completed by a team of four members. I contributed to system integration, sensor coordination, and overall implementation of the classroom monitoring framework.",
+    },
   ],
   uiux: [
-    
+
   ],
   management: [
 
@@ -309,7 +399,7 @@ export const experienceData: Record<Role, ExperienceItem[]> = {
         "Participated in a 15-day intensive industrial training program covering 7+ departments including Product Management, Design, Frontend, Backend, DevOps, SQA, Data Engineering and Payment Systems. Built a working LLM chatbot using vector databases and custom PDF input. Worked directly with engineers and mentors on real-world fintech systems and workflows.",
       skills: [
         "Product Management",
-        "Full Stack Development", 
+        "Full Stack Development",
         "LLM Integration",
         "Vector Databases",
         "DevOps",
@@ -366,7 +456,7 @@ export const experienceData: Record<Role, ExperienceItem[]> = {
       duration: "2023 - Present",
       description:
         "Dynamic content writer at MIST Computer Club, crafting compelling and engaging narratives that captivate audience and drive impactful communication.",
-      skills: [ "Dynamic Communication", "Web Content Writing"],
+      skills: ["Dynamic Communication", "Web Content Writing"],
     },
     {
       title: "Assistant Financial Secretary",
@@ -380,7 +470,7 @@ export const experienceData: Record<Role, ExperienceItem[]> = {
         "Cross-team Collaboration",
       ],
     },
-    
+
   ],
 };
 
@@ -421,7 +511,14 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
     },
   ],
   ctf: [
-
+    {
+      name: "Automate Cybersecurity Tasks with Python",
+      issuer: "Google",
+      date: "August 2025",
+      image: "/Automate Cybersecurity Tasks with Python-1.png",
+      description: "Google Cybersecurity Certificate. Skills: Python Programming . Cybersecurity Automation . Task Automation",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/NDPFPF2Z6ZKT"
+    },
     {
       name: "Sound the Alarm: Detection and Response",
       issuer: "Google",
@@ -514,6 +611,13 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
       image: "/leetcon_ctf.jpg",
       description: "First onsite CTF round with my team. Got inspired to continue competing.",
     },
+    {
+      name: "BUP CTF 2025 participation",
+      issuer: "BUP Computer Programming Club & Knight Squad",
+      date: "Oct 2025",
+      image: "/BUP CTF 9th.png",
+      description: "Participated in BUP CTF 2025 with team Kali_Hunters and secured 9th place out of 39 teams. Successfully solved challenging reverse engineering problems and demonstrated strong cybersecurity skills in collaboration with teammates.",
+    },
   ],
   uiux: [
     {
@@ -525,6 +629,20 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
     },
   ],
   management: [
+    {
+      name: "MIST Mongol Barota Team Member Recognition",
+      issuer: "MIST Mongol Barota",
+      date: "2024-2025",
+      image: "/2024 to 2025 Mongol Barota.png",
+      description: "Certificate of Recognition for valuable contributions as a team member of MIST Mongol Barota during the period 2024–2025. Recognized for dedication and teamwork in supporting the development and documentation of the rover project.",
+    },
+    {
+      name: "MIST Mongol Barota Team Contribution & Management Leadership",
+      issuer: "MIST Mongol Barota",
+      date: "2023-2024",
+      image: "/Mongol Barota 23 to 24.png",
+      description: "Certificate of Recognition for dedication and contribution as a member of the MIST Mongol Barota team. Served as general member and later as Team Lead of the Management sub-team from 2023 to 2024, playing a key role in coordinating multidisciplinary teams and supporting team's participation in Anatolian Rover Challenge 2024.",
+    },
     {
       name: "MIST Mongol Barota Team secured 2nd Position in Anatolian Rover Challenge 2024",
       issuer: "Anatolian Rover Challenge",
@@ -543,6 +661,28 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
 };
 
 export const galleryImages: GalleryItem[] = [
+
+  {
+    image: "/IMG_5699.JPG",
+    caption: "Grameenphone Academy Celebration at Radisson Blu Dhaka",
+    alt: "Grameenphone Academy Celebration event at Radisson Blu Dhaka",
+    story:
+      "On Dec 6, 2025, I attended the Grameenphone Academy Celebration at Radisson Blu Dhaka with an inspiring community of learners, mentors, and industry professionals. The SHERO segment powerfully highlighted women leaders, and the eco-focused fashion show raised environmental awareness. It was wonderful reconnecting with the GP Academy network and reflecting on our growth."
+  },
+  {
+    image: "/GP_House_Visit_23_OCT.jpg",
+    caption: "2nd Place in Prompt Engineering Quiz at GP House",
+    alt: "Prompt Engineering session at Grameenphone House",
+    story:
+      "Still can't believe it—2nd place out of nearly 300 participants! I attended a Prompt Engineering session at GP House on Oct 23rd, and unexpectedly placed 2nd in the live quiz. I wasn't expecting to win; I was just there to learn and connect. Each time I visit GP House, I leave with something new—a lesson, a connection, or a bit more inspiration. What struck me most was how genuinely welcoming everyone was and their commitment to youth development."
+  },
+  {
+    image: "/BUP_CTF.jpg",
+    caption: "BUP CTF 2025 - 9th Place Finish with Kali_Hunters",
+    alt: "BUP CTF 2025 cybersecurity competition achievement",
+    story:
+      "Walking into BUP CTF 2025, our team Kali_Hunters had one goal: to push harder than we did at UAP Cyber Siege and prove ourselves among Bangladesh's top cybersecurity minds. The qualification round was intense, but we made it through. Then came the main event—challenges piling up, time ticking away, and the pressure mounting with every passing hour. At one point, I found myself staring at a particularly nasty reverse engineering problem. The scoreboard was frozen, we were sitting in 16th place, and honestly, I wasn't sure if we could climb higher. But I didn't give up. I dug deeper, analyzed the code, and finally cracked it. The wait for final results felt eternal, filled with nervous energy and what-ifs. Then came the announcement: 9th place out of 39 teams. I'll never forget that moment—the relief, the joy, the realization that all our late nights, countless bugs we debugged together, and the trust we had in each other had paid off. To my teammates Sumaiya, Sabbir, and Ibrahim: you guys are incredible. This win belongs to all of us, and I'm grateful for every challenge we solved together and every moment we pushed through the doubt."
+  },
   {
     image: "/gpacademy1.jpeg",
     caption: "Celebrating Milestone at GP Academy as Freelance Factory Batch 1",
@@ -551,12 +691,19 @@ export const galleryImages: GalleryItem[] = [
       "Celebrated GP Academy crossing the $10,000 earning milestone through the Freelancing Factory program. Grateful for inspiring mentorship, supportive hosts, and the growth I’ve achieved in just five months of starting UI/UX design."
   },
   {
-    image: "/uap.jpeg",
-    caption: "UAP Cyber Siege 2025 Finals",
-    alt: "Cybersecurity competition setup with team members",
+    image: "/problem_setter.jpg",
+    caption: "Talent Hunt 2025 - Problem Setter & Organizer",
+    alt: "Talent Hunt 2025 CTF event organization",
     story:
-      "Competed in the final round of UAP Cyber Siege 2025 with my team, securing 18th place on the leaderboard. It was a thrilling experience tackling complex cybersecurity challenges, learning teamwork, and gaining insights for my future journey."
+      "On July 5th, I stepped into the role of problem setter and organizer for Talent Hunt 2025, a Capture the Flag contest designed for freshers. Coordinating with classmates and juniors to create challenging yet fair problems, manage the competition flow, and ensure every fresher had an engaging learning experience was incredibly rewarding. Seeing their curiosity and enthusiasm as they tackled the challenges reminded me why I love this community. It was about building the next generation of cybersecurity enthusiasts."
   },
+  {
+    image: "/mcsc.jpeg",
+    caption: "First Cybersecurity Class taken at MIST Cyber Security Club",
+    alt: "Cybersecurity club session with students learning Kali Linux",
+    story:
+      "Conducted my first session for the Freshers’ Batch of MIST Cyber Security Club, introducing them to Kali Linux tools and Capture the Flag challenges. The energy and curiosity were amazing, and we wrapped up with a fun Kahoot quiz."
+  },  
   {
     image: "/next.jpeg",
     caption: "Industrial Training at NEXT Ventures",
@@ -565,11 +712,11 @@ export const galleryImages: GalleryItem[] = [
       "Completed 15 days of intensive industrial training at NEXT Ventures, working across product management, design, frontend, backend, data engineering, QA, DevOps, and payment integration. Our final project was an LLM chatbot. The experience boosted my confidence and exposed me to real-world workflows."
   },
   {
-    image: "/mcsc.jpeg",
-    caption: "First Cybersecurity Class taken at MIST Cyber Security Club",
-    alt: "Cybersecurity club session with students learning Kali Linux",
+    image: "/uap.jpeg",
+    caption: "UAP Cyber Siege 2025 Finals",
+    alt: "Cybersecurity competition setup with team members",
     story:
-      "Conducted my first session for the Freshers’ Batch of MIST Cyber Security Club, introducing them to Kali Linux tools and Capture the Flag challenges. The energy and curiosity were amazing, and we wrapped up with a fun Kahoot quiz."
+      "Competed in the final round of UAP Cyber Siege 2025 with my team, securing 18th place on the leaderboard. It was a thrilling experience tackling complex cybersecurity challenges, learning teamwork, and gaining insights for my future journey."
   },
 ];
 
