@@ -621,6 +621,14 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
   ],
   uiux: [
     {
+        name: "Mastering UI/UX Design Course",
+        issuer: "Grameenphone Academy's Freelancing Factory Program",
+        description: "In recognition of outstanding dedication for the completion of the Mastering UI/UX Design Course under the Freelancing Factory Program.",
+        image: "/1770130308011.jpg", 
+        credentialUrl: "https://www.grameenphone.academy/cert/f74d4f2da211",
+        date: "Jan 2026",
+    },
+    {
       name: "Inception to Graphic Design",
       issuer: "MIST Innovation Club",
       date: "2022",
