@@ -512,6 +512,22 @@ export const certificatesData: Record<Role, CertificateItem[]> = {
   ],
   ctf: [
     {
+      name: "Introduction to Software Quality Assurance",
+      issuer: "Board Infinity (Coursera)",
+      date:"March 2026",
+      image: "/Introduction to SQA by Board Infinity.png",
+      description: "Introduction to SQA. Skills: Software Testing · Quality Assurance · Test Automation · Manual Testing ",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/verify/4QZKSBFTX683"
+    },
+    {
+      name: "Pre Security Certificate",
+      issuer: "TryHackMe",
+      date: "February 2026",
+      image:"/tryhackme pre security.png",
+      description: "Basic concepts of all fields of cybersecurity. Skills: Cybersecurity · Networking · Linux · Web Exploitation · Cryptography · OSINT",
+      credentialUrl: "https://tryhackme.com/certificate/THM-SBW9KSOKO4"
+    },
+    {
       name: "Automate Cybersecurity Tasks with Python",
       issuer: "Google",
       date: "August 2025",
