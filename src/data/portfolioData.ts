@@ -62,7 +62,7 @@ With expertise in both frontend and backend technologies, I build comprehensive 
     additionalInfo: `I specialize in JavaScript/TypeScript ecosystems, with particular focus on React, Node.js, and modern database technologies.
 My approach combines technical excellence with user-centered design principles to create applications that are not just functional,
 but also intuitive and enjoyable to use.`,
-    image: "/Reefah_Tasnia.jpg", // Example image, user can change
+    image: "/reefah.jpeg", // Example image, user can change
   },
   ctf: {
     name: "Reefah Tasnia Haque",
@@ -280,7 +280,7 @@ export const projectsData: Record<Role, ProjectItem[]> = {
         "An AI-powered PDF assistant that uses Large Language Models, ChromaDB, and a modern Next.js frontend to provide source-cited answers from uploaded documents.",
       image: "/PDFGenius.png",
       tags: ["Python", "Next.js", "ChromaDB", "LLM", "Flask", "Langchain", "Vector Database", "Tailwind CSS"],
-      github: "https://github.com/reefahtasnia/LLM_Project",
+      github: "https://github.com/reefahtasnia/PDF-Genius_LLM-Project.git",
       type: "Individual",
       features: [
         "Upload PDF files via modern web UI",
@@ -392,31 +392,29 @@ export const projectsData: Record<Role, ProjectItem[]> = {
 export const experienceData: Record<Role, ExperienceItem[]> = {
   fullstack: [
     {
-      title: "Industrial Trainee",
-      company: "NEXT Ventures - Internship",
-      duration: "May 2025 - May 2025",
+      title: "Digitalyst Intern",
+      company: "Banglalink",
+      duration: "June 2026 – Present",
       description:
-        "Participated in a 15-day intensive industrial training program covering 7+ departments including Product Management, Design, Frontend, Backend, DevOps, SQA, Data Engineering and Payment Systems. Built a working LLM chatbot using vector databases and custom PDF input. Worked directly with engineers and mentors on real-world fintech systems and workflows.",
-      skills: [
-        "Product Management",
-        "Full Stack Development",
-        "LLM Integration",
-        "Vector Databases",
-        "DevOps",
-        "Fintech Systems",
-        "Docker",
-        "Kubernetes",
-        "AWS"
-      ],
+        "Selected through a competitive hiring process for Banglalink's Digitalyst program, placed in the Business Assurance and Internal Control department. Working on revenue assurance, internal risk management and business operations analytics.",
+      skills: ["Revenue Assurance", "Business Analytics", "Internal Audit", "Risk Management", "Telecom"],
+    },
+    {
+      title: "Industrial Trainee",
+      company: "NEXT Ventures",
+      duration: "May 2025",
+      description:
+        "15-day intensive rotation across SQA, DevOps, Data Engineering and Payment Systems. Built an LLM chatbot using vector databases and custom PDF input as a final project.",
+      skills: ["SQA", "DevOps", "LLM Integration", "Vector Databases", "Docker", "Fintech"],
     },
   ],
   ctf: [
     {
-      title: "Secretary and Mentor",
+      title: "General Secretary and Mentor",
       company: "MIST Cyber Security Club",
-      duration: "2024 - Present",
+      duration: "2024 – Present",
       description:
-        "Serving as Secretary and mentoring junior CTF players, creating challenges, and organizing competition events.",
+        "Serving as General Secretary and mentoring junior CTF players, creating challenges, and organizing competition events.",
       skills: [
         "Challenge Creation",
         "Reverse Engineering",
@@ -426,16 +424,7 @@ export const experienceData: Record<Role, ExperienceItem[]> = {
       ],
     },
   ],
-  uiux: [
-    {
-      title: "Freelance UI/UX Designer",
-      company: "Fiverr",
-      duration: "2024 - Present",
-      description:
-        "Leading design initiatives for enterprise clients, focusing on creating cohesive user experiences across platforms.",
-      skills: ["Design Systems", "User Research", "Prototyping", "Figma"],
-    },
-  ],
+  uiux: [],
   management: [
     {
       title: "Management Team Lead",

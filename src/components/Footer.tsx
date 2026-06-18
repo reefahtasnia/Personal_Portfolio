@@ -15,7 +15,7 @@ export default function Footer() {
         
         <div className="mt-4 text-sm">
           <span className="text-gray-400">
-            Full Stack Dev | CTF Player | UI/UX Designer
+            Full Stack Dev | SQA Engineer | Tech Enthusiast
           </span>
         </div>
       </div>

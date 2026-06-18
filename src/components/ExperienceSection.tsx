@@ -1,114 +1,295 @@
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-import { useState, useEffect } from "react";
-import { experienceData, type Role } from "@/data/portfolioData";
-import { cn } from "@/lib/utils";
-import { Briefcase } from "lucide-react";
-import { useRef } from "react";
+gsap.registerPlugin(ScrollTrigger)
 
-// Combine all experiences from all roles
-const getAllExperiences = () => {
-  const allExperiences = [];
-  Object.values(experienceData).forEach(roleExperiences => {
-    allExperiences.push(...roleExperiences);
-  });
-  return allExperiences;
-};
+type ExpEntry = {
+  title: string
+  company: string
+  duration: string
+  description: string
+  skills: string[]
+}
 
-export default function ExperienceSection() {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [visibleIndexes, setVisibleIndexes] = useState<number[]>([]);
+const WORK: ExpEntry[] = [
+  {
+    title: "Digitalyst Intern",
+    company: "Banglalink",
+    duration: "June 2026 – Present",
+    description:
+      "Selected through a competitive hiring process for Banglalink's Digitalyst program, placed in the Business Assurance and Internal Control department. Working on revenue assurance, internal risk management and business operations analytics.",
+    skills: ["Revenue Assurance", "Business Analytics", "Internal Audit", "Risk Management", "Telecom"],
+  },
+  {
+    title: "Industrial Trainee",
+    company: "NEXT Ventures",
+    duration: "May 2025",
+    description:
+      "15-day intensive rotation across SQA, DevOps, Data Engineering and Payment Systems. Built an LLM chatbot using vector databases and custom PDF input as a final project.",
+    skills: ["SQA", "DevOps", "LLM Integration", "Vector Databases", "Docker", "Fintech"],
+  },
+]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const cards = Array.from(containerRef.current.querySelectorAll('.exp-card'));
-      const windowHeight = window.innerHeight;
-      cards.forEach((card, idx) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < windowHeight - 80) {
-          setVisibleIndexes((prev) => prev.includes(idx) ? prev : [...prev, idx]);
-        }
-      });
-    };
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const VOLUNTARY: ExpEntry[] = [
+  {
+    title: "General Secretary and Mentor",
+    company: "MIST Cyber Security Club",
+    duration: "2024 – Present",
+    description:
+      "Serving as General Secretary and mentoring junior CTF players, creating challenges, and organizing competition events.",
+    skills: ["Challenge Creation", "Reverse Engineering", "Networking", "Mentorship", "Leadership"],
+  },
+  {
+    title: "Management Team Lead",
+    company: "MIST Mongol Barota — Mars Rover Society",
+    duration: "2023 – 2025",
+    description:
+      "Actively managed people of multiple teams responsible for the development and documentation of the rover.",
+    skills: ["Team Leadership", "Event Management", "Delegation", "Communication"],
+  },
+  {
+    title: "Executive Member, Communications",
+    company: "MIST Computer Club",
+    duration: "2023 – Present",
+    description:
+      "Dynamic content writer crafting compelling narratives that captivate audiences and drive impactful communication.",
+    skills: ["Dynamic Communication", "Web Content Writing"],
+  },
+]
 
-  const experiences = getAllExperiences();
-
+function ExpCard({ exp }: { exp: ExpEntry }) {
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center neon-text">
-          Experience
-        </h2>
-        <p className="text-center text-lg mb-12">
-          My professional journey and career highlights
+    <div
+      className="exp-card"
+      style={{
+        position: "relative",
+        marginBottom: "1rem",
+        willChange: "transform, opacity, filter",
+      }}
+    >
+      {/* Timeline dot */}
+      <div
+        className="timeline-dot"
+        style={{
+          position: "absolute",
+          left: "calc(-2rem - 8px)",
+          top: "1.3rem",
+          width: "14px",
+          height: "14px",
+          borderRadius: "50%",
+          backgroundColor: "#0a0a0f",
+          border: "2px solid #a78bfa",
+          willChange: "transform",
+          zIndex: 1,
+        }}
+      />
+
+      <div
+        style={{
+          backgroundColor: "#111118",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "10px",
+          padding: "1.25rem 1.5rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "0.5rem",
+            marginBottom: "0.25rem",
+          }}
+        >
+          <h3 style={{ color: "#f0f0f0", fontWeight: 600, fontSize: "1rem" }}>{exp.title}</h3>
+          <span
+            style={{
+              fontSize: "0.72rem",
+              color: "#888",
+              backgroundColor: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: "20px",
+              padding: "0.15rem 0.65rem",
+            }}
+          >
+            {exp.duration}
+          </span>
+        </div>
+
+        <p style={{ color: "#a78bfa", fontSize: "0.85rem", fontWeight: 500, marginBottom: "0.6rem" }}>
+          {exp.company}
         </p>
 
-        <div
-          className={cn(
-            "transition-all duration-300 max-w-4xl mx-auto",
-            isAnimating ? "opacity-0 transform translate-y-8" : "opacity-100 transform translate-y-0"
-          )}
-          ref={containerRef}
+        <p style={{ color: "#666", fontSize: "0.85rem", lineHeight: 1.7, marginBottom: "0.9rem" }}>
+          {exp.description}
+        </p>
+
+        <div className="skill-tags" style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+          {exp.skills.map((skill, i) => (
+            <span
+              key={i}
+              style={{
+                fontSize: "0.68rem",
+                padding: "0.18rem 0.55rem",
+                backgroundColor: "rgba(167,139,250,0.08)",
+                border: "1px solid rgba(167,139,250,0.22)",
+                color: "#a78bfa",
+                borderRadius: "4px",
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function ExperienceSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const workLineRef = useRef<HTMLDivElement>(null)
+  const voluntaryLineRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReduced || !containerRef.current) return
+
+    const ctx = gsap.context(() => {
+      // Cards: slide in from left with blur fade
+      const cards = containerRef.current!.querySelectorAll(".exp-card")
+      cards.forEach(card => {
+        gsap.from(card, {
+          opacity: 0,
+          x: -48,
+          filter: "blur(6px)",
+          duration: 0.65,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        })
+      })
+
+      // Dots: pop in with bounce, offset slightly after the card
+      const dots = containerRef.current!.querySelectorAll(".timeline-dot")
+      dots.forEach(dot => {
+        gsap.from(dot, {
+          scale: 0,
+          duration: 0.45,
+          ease: "back.out(3)",
+          scrollTrigger: {
+            trigger: dot,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        })
+      })
+
+      // Skill tags: stagger in after card
+      const tagGroups = containerRef.current!.querySelectorAll(".skill-tags")
+      tagGroups.forEach(group => {
+        const tags = group.querySelectorAll("span")
+        gsap.from(tags, {
+          opacity: 0,
+          y: 8,
+          duration: 0.35,
+          ease: "power2.out",
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: group,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        })
+      })
+
+      // Timeline lines: draw downward scrubbed to scroll
+      ;[workLineRef.current, voluntaryLineRef.current].forEach(line => {
+        if (!line) return
+        gsap.from(line, {
+          scaleY: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: line,
+            start: "top 70%",
+            end: "bottom 30%",
+            scrub: 0.6,
+          },
+        })
+      })
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  const groupLabelStyle = (first: boolean): React.CSSProperties => ({
+    fontSize: "0.65rem",
+    textTransform: "uppercase",
+    letterSpacing: "0.14em",
+    color: "#a78bfa",
+    fontWeight: 600,
+    marginBottom: "1.5rem",
+    marginTop: first ? 0 : "3rem",
+  })
+
+  return (
+    <section id="experience" style={{ padding: "5rem 0" }}>
+      <div className="container mx-auto px-4">
+        <h2
+          style={{
+            fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)",
+            fontWeight: 700,
+            color: "#f0f0f0",
+            letterSpacing: "-0.01em",
+            marginBottom: "2.5rem",
+          }}
         >
-          {(!experiences || experiences.length === 0) ? (
-            <div className="text-center text-gray-500 dark:text-gray-400 py-12">
-              No experiences yet.
-            </div>
-          ) : (
-            <div className="relative border-l-2 border-neon-blue dark:border-neon-purple ml-6 md:ml-12 pl-8 space-y-12">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "relative exp-card transition-all duration-700",
-                    visibleIndexes.includes(index)
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8",
-                  )}
-                  style={{ transitionDelay: visibleIndexes.includes(index) ? `${index * 120}ms` : "0ms" }}
-                >
-                  <div className="absolute -left-[41px] p-2 rounded-full bg-white dark:bg-near-black border-2 border-neon-blue dark:border-neon-purple">
-                    <Briefcase className="h-5 w-5 text-neon-blue dark:text-neon-purple" />
-                  </div>
-                  
-                  <div className="glass-panel p-6 rounded-lg">
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 justify-between mb-2">
-                      <h3 className="text-xl font-bold">{exp.title}</h3>
-                      <span className="text-sm px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full">
-                        {exp.duration}
-                      </span>
-                    </div>
-                    
-                    <p className="text-lg font-medium mb-3 text-gray-700 dark:text-gray-300">
-                      {exp.company}
-                    </p>
-                    
-                    <p className="mb-4 text-gray-600 dark:text-gray-400">
-                      {exp.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {exp.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          Experience
+        </h2>
+
+        <div ref={containerRef} style={{ maxWidth: "56rem" }}>
+
+          <p style={groupLabelStyle(true)}>Work Experience</p>
+          <div style={{ position: "relative", marginLeft: "1.25rem", paddingLeft: "2rem" }}>
+            <div
+              ref={workLineRef}
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: "2px",
+                backgroundColor: "#a78bfa",
+                transformOrigin: "top center",
+              }}
+            />
+            {WORK.map((exp, i) => <ExpCard key={i} exp={exp} />)}
+          </div>
+
+          <p style={groupLabelStyle(false)}>Voluntary &amp; Club Experience</p>
+          <div style={{ position: "relative", marginLeft: "1.25rem", paddingLeft: "2rem" }}>
+            <div
+              ref={voluntaryLineRef}
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: "2px",
+                backgroundColor: "#a78bfa",
+                transformOrigin: "top center",
+              }}
+            />
+            {VOLUNTARY.map((exp, i) => <ExpCard key={i} exp={exp} />)}
+          </div>
+
         </div>
       </div>
     </section>
-  );
+  )
 }

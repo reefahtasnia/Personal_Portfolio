@@ -1,198 +1,227 @@
-"use client"
+import { useState } from "react"
+import { certificatesData } from "@/data/portfolioData"
 
-import { useState, useEffect } from "react"
-import { certificatesData, type Role } from "@/data/portfolioData"
-import { cn } from "@/lib/utils"
-import { Award, ExternalLink, X } from "lucide-react"
+type CertEntry = {
+  name: string
+  issuer: string
+  date: string
+  image?: string
+  credentialUrl?: string
+}
 
-// Combine all certificates from all roles and sort newest-first
-const getAllCertificates = () => {
-  const allCertificates: typeof certificatesData[keyof typeof certificatesData][number][] = []
-  Object.values(certificatesData).forEach(roleCertificates => {
-    allCertificates.push(...roleCertificates)
-  })
+const PINNED: CertEntry[] = [
+  {
+    name: "Google Cybersecurity Professional Certificate",
+    issuer: "Google · Coursera",
+    date: "Aug 2025",
+    image: "/foundations of cybersecurity certificate-1.png",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/9MIHMHGJVMK6",
+  },
+  {
+    name: "Introduction to Software Quality Assurance",
+    issuer: "Board Infinity · Coursera",
+    date: "March 2026",
+    image: "/Introduction to SQA by Board Infinity.png",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/4QZKSBFTX683",
+  },
+  {
+    name: "Pre Security Certificate",
+    issuer: "TryHackMe",
+    date: "February 2026",
+    image: "/tryhackme pre security.png",
+    credentialUrl: "https://tryhackme.com/certificate/THM-SBW9KSOKO4",
+  },
+]
 
-  const monthMap: Record<string, number> = {
-    jan: 1, january: 1,
-    feb: 2, february: 2,
-    mar: 3, march: 3,
-    apr: 4, april: 4,
-    may: 5,
-    jun: 6, june: 6,
-    jul: 7, july: 7,
-    aug: 8, august: 8,
-    sep: 9, sept: 9, september: 9,
-    oct: 10, october: 10,
-    nov: 11, november: 11,
-    dec: 12, december: 12,
-  }
+const PINNED_NAMES = new Set(PINNED.map(p => p.name))
 
-  const parseDate = (raw: string): number => {
-    if (!raw) return 0
-    const trimmed = raw.trim().toLowerCase()
-    // Patterns: "Jul 2025", "July 2025", "2025"
-    const parts = trimmed.split(/\s+/)
-    let year = 0
-    let month = 12 // default to December so year-only entries appear after specific month entries of same year
-    if (parts.length === 1) {
-      // Year only
-      year = parseInt(parts[0].replace(/[^0-9]/g, ""), 10) || 0
-    } else if (parts.length >= 2) {
-      const m = monthMap[parts[0]]
-      if (m) month = m
-      year = parseInt(parts[1].replace(/[^0-9]/g, ""), 10) || 0
-    }
-    // Score for sorting (year first then month)
-    return year * 100 + month
-  }
+const getAllRest = (): CertEntry[] => {
+  const seen = new Set<string>()
+  const all: CertEntry[] = []
+  Object.values(certificatesData).forEach(role =>
+    role.forEach(c => {
+      if (!PINNED_NAMES.has(c.name) && !seen.has(c.name)) {
+        seen.add(c.name)
+        all.push({ name: c.name, issuer: c.issuer, date: c.date, image: c.image, credentialUrl: c.credentialUrl })
+      }
+    })
+  )
+  return all
+}
 
-  allCertificates.sort((a, b) => parseDate(b.date) - parseDate(a.date))
-  return allCertificates
+function CertCard({ cert }: { cert: CertEntry }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: "#111118",
+        border: `1px solid ${hovered ? "rgba(167,139,250,0.25)" : "rgba(255,255,255,0.06)"}`,
+        borderRadius: "8px",
+        overflow: "hidden",
+        transition: "border-color 0.2s, background-color 0.2s",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: hovered ? "#18181f" : "#111118",
+      } as React.CSSProperties}
+    >
+      {/* Certificate image */}
+      <div
+        style={{
+          aspectRatio: "16/10",
+          overflow: "hidden",
+          backgroundColor: "#0d0d14",
+          flexShrink: 0,
+        }}
+      >
+        {cert.image ? (
+          <img
+            src={cert.image}
+            alt={cert.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+              transition: "transform 0.3s ease",
+              transform: hovered ? "scale(1.03)" : "scale(1)",
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span style={{ color: "rgba(255,255,255,0.12)", fontSize: "0.75rem" }}>Certificate</span>
+          </div>
+        )}
+      </div>
+
+      {/* Card content */}
+      <div
+        style={{
+          padding: "0.8rem 1rem",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          gap: "0.5rem",
+        }}
+      >
+        <div>
+          <p
+            style={{
+              fontSize: "0.62rem",
+              color: "rgba(255,255,255,0.35)",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              marginBottom: "0.3rem",
+            }}
+          >
+            {cert.issuer} · {cert.date}
+          </p>
+          <p style={{ fontWeight: 600, fontSize: "0.82rem", color: "#f0f0f0", lineHeight: 1.4 }}>
+            {cert.name}
+          </p>
+        </div>
+
+        {cert.credentialUrl && (
+          <a
+            href={cert.credentialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#a78bfa",
+              fontSize: "0.72rem",
+              textDecoration: "none",
+              transition: "opacity 0.2s",
+              display: "inline-block",
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.65")}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+          >
+            View credential →
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+const GRID: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
+  gap: "1rem",
 }
 
 export default function CertificatesSection() {
-  const [isAnimating, setIsAnimating] = useState(false)
-  const [selectedCertificate, setSelectedCertificate] = useState<number | null>(null)
-
-  const certificates = getAllCertificates()
-
-  const openCertificate = (index: number) => {
-    setSelectedCertificate(index)
-  }
-
-  const closeCertificate = () => {
-    setSelectedCertificate(null)
-  }
+  const [expanded, setExpanded] = useState(false)
+  const rest = getAllRest()
 
   return (
-    <section id="certificates" className="py-20">
+    <section id="certificates" style={{ padding: "5rem 0" }}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center neon-text">
+        <h2
+          style={{
+            fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)",
+            fontWeight: 700,
+            color: "#f0f0f0",
+            letterSpacing: "-0.01em",
+            marginBottom: "2.5rem",
+          }}
+        >
           Certificates
         </h2>
-        <p className="text-center text-lg mb-12">My professional certifications and achievements</p>
 
-        <div
-          className={cn(
-            "transition-all duration-300",
-            isAnimating ? "opacity-0 transform translate-y-8" : "opacity-100 transform translate-y-0",
-          )}
-        >
-          {certificates.length === 0 ? (
-            <div className="text-center text-gray-500 dark:text-gray-400 py-12">No certification yet</div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certificates.map((cert, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-6 flex flex-col items-center text-center transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
-                  onClick={() => openCertificate(index)}
-                >
-                  {/* Show certificate image at the top of the card */}
-                  {cert.image && (
-                    <img
-                      src={cert.image.startsWith("/") ? cert.image : `/${cert.image}`}
-                      alt={cert.name}
-                      className="w-full h-40 object-contain rounded-lg mb-4 bg-gray-100 dark:bg-gray-900"
-                      onError={e => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/placeholder.svg?height=160&width=240";
-                        target.alt = "Certificate image could not be loaded";
-                      }}
-                    />
-                  )}
-                  <h3 className="font-bold text-lg mb-2">{cert.name}</h3>
-                  <div className="space-y-2">
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{cert.issuer}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{cert.date}</p>
-                  </div>
-                  {/* Optional credential URL below info */}
-                  {cert.credentialUrl && (
-                    <div className="mt-2">
-                      <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
-                        <ExternalLink className="h-3 w-3 inline" /> Credential
-                      </a>
-                    </div>
-                  )}
-                  <div className="mt-4">
-                    <button className="text-sm neon-text hover:underline">
-                      View Certificate
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+        {/* Pinned three */}
+        <div style={GRID}>
+          {PINNED.map((cert, i) => (
+            <CertCard key={i} cert={cert} />
+          ))}
         </div>
 
-        {/* Certificate Modal */}
-        {selectedCertificate !== null && certificates[selectedCertificate] && (
-          <div
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={closeCertificate}
+        {/* Toggle */}
+        {rest.length > 0 && (
+          <button
+            onClick={() => setExpanded(v => !v)}
+            style={{
+              marginTop: "1.75rem",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#a78bfa",
+              fontSize: "0.82rem",
+              letterSpacing: "0.04em",
+              padding: 0,
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.65")}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
           >
-            <div
-              className="bg-white dark:bg-gray-800 max-w-3xl w-full rounded-xl shadow-lg overflow-hidden relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-4">
-                {/* Close button - Moved outside of content area and made more visible */}
-                <button
-                  className="absolute top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors z-10 shadow-md"
-                  onClick={closeCertificate}
-                  aria-label="Close certificate view"
-                >
-                  <X className="h-5 w-5 text-gray-800 dark:text-gray-200" />
-                </button>
-
-                <h3 className="text-xl font-bold mb-4 text-center pr-10">{certificates[selectedCertificate].name}</h3>
-
-                <div className="flex flex-col md:flex-row gap-6">
-                  {certificates[selectedCertificate].image && (
-                    <div className="flex-1">
-                      <img
-                        src={certificates[selectedCertificate].image.startsWith("/") ? certificates[selectedCertificate].image : `/${certificates[selectedCertificate].image}`}
-                        alt={certificates[selectedCertificate].name}
-                        className="w-full h-auto rounded-lg shadow-md"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement
-                          target.src = "/placeholder.svg?height=300&width=400"
-                          target.alt = "Certificate image could not be loaded"
-                        }}
-                      />
-                    </div>
-                  )}
-                  <div className={`flex-1 ${!certificates[selectedCertificate].image ? "w-full" : ""}`}>
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold">Issued by</p>
-                      <p>{certificates[selectedCertificate].issuer}</p>
-                    </div>
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold">Date</p>
-                      <p>{certificates[selectedCertificate].date}</p>
-                    </div>
-                    {certificates[selectedCertificate].description && (
-                      <div className="mb-4">
-                        <p className="text-sm font-semibold">Description</p>
-                        <p className="text-gray-700 dark:text-gray-300">
-                          {certificates[selectedCertificate].description}
-                        </p>
-                      </div>
-                    )}
-                    {/* Optional credential URL in modal */}
-                    {certificates[selectedCertificate].credentialUrl && (
-                      <div className="mb-4">
-                        <a href={certificates[selectedCertificate].credentialUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
-                          <ExternalLink className="h-3 w-3 inline" /> Credential
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            {expanded ? "Collapse ↑" : `View all certificates → (${rest.length} more)`}
+          </button>
         )}
+
+        {/* Accordion */}
+        <div
+          style={{
+            maxHeight: expanded ? "10000px" : "0",
+            overflow: "hidden",
+            transition: "max-height 0.7s ease",
+          }}
+        >
+          <div style={{ ...GRID, paddingTop: "1rem" }}>
+            {rest.map((cert, i) => (
+              <CertCard key={i} cert={cert} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
