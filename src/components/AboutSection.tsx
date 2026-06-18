@@ -86,7 +86,7 @@ export default function AboutSection() {
       ref={sectionRef}
       style={{
         position: "relative",
-        padding: isMobile ? "5rem 1.5rem 5rem" : "9rem 5vw 9rem",
+        padding: isMobile ? "5rem 1.5rem 5rem" : "9rem 4vw 9rem 3vw",
         overflow: "hidden",
       }}
     >
@@ -96,7 +96,7 @@ export default function AboutSection() {
           ref={imageRef}
           style={{
             position: "absolute",
-            right: 0,
+            right: "2rem",
             top: "15%",
             width: "min(38vw, 450px)",
             aspectRatio: "3/4",
@@ -133,7 +133,7 @@ export default function AboutSection() {
         {/* Statement text */}
         <p
           style={{
-            width: isMobile ? "100%" : "66%",
+            width: isMobile ? "100%" : "55%",
             fontSize: "clamp(1rem, 1.9vw, 1.85rem)",
             lineHeight: 1.55,
             color: "#f0f0f0",
@@ -155,14 +155,14 @@ export default function AboutSection() {
         {/* Bio — offset right on desktop */}
         <div
           style={{
-            marginLeft: isMobile ? 0 : "20%",
-            width: isMobile ? "100%" : "28%",
+            marginLeft: isMobile ? 0 : "5%",
+            width: isMobile ? "100%" : "40%",
           }}
         >
           <p
             style={{
               color: "#666",
-              fontSize: "0.95rem",
+              fontSize: "1.05rem",
               lineHeight: 1.75,
               marginBottom: 0,
             }}
@@ -185,7 +185,7 @@ export default function AboutSection() {
               >
                 <span
                   style={{
-                    fontSize: "0.65rem",
+                    fontSize: "0.7rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
                     color: "#a78bfa",
@@ -196,7 +196,7 @@ export default function AboutSection() {
                 >
                   {fact.label}
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>
+                <span style={{ fontSize: "0.92rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>
                   {fact.value}
                 </span>
               </div>
