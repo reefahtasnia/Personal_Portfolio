@@ -400,6 +400,25 @@ export const experienceData: Record<Role, ExperienceItem[]> = {
       skills: ["Revenue Assurance", "Business Analytics", "Internal Audit", "Risk Management", "Telecom"],
     },
     {
+      title: "Functional Testing (QA) Intern",
+      company: "a1qa - QA Internship Program",
+      duration: "April 2026 - June 2026",
+      description:
+          "Went through a group training and then an individual 1-on-1 mentorship on QA principles, Testing lifecycle and test documentation. Conducted 1-on-1 mentor-led testing on live training web applications, applying strict bug reporting standards, formal test documentation and spec-first testing discipline.",
+      skills: [
+          "Manual Testing",
+          "Bug Reporting",
+          "Jira",
+          "Test Documentation",
+          "Acceptance Sheets",
+          "Test Surveys",
+          "Boundary Value Analysis",
+          "Fiddler Classic",
+          "Charles Proxy",
+          "Virtual Machine",
+      ],
+    },
+    {
       title: "Industrial Trainee",
       company: "NEXT Ventures",
       duration: "May 2025",
