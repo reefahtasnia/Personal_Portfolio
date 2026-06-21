@@ -63,7 +63,6 @@ function CertCard({ cert }: { cert: CertEntry }) {
         transition: "border-color 0.2s, background-color 0.2s",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: hovered ? "#18181f" : "#111118",
       } as React.CSSProperties}
     >
       {/* Certificate image */}
